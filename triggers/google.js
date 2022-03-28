@@ -12,7 +12,6 @@ var sheet = document.head.innerHTML += `
     
     #rcnt {
         max-width: initial;
-        flex-wrap: initial; 
     }
 </style>
 `
@@ -39,6 +38,9 @@ for (let i = 0; i < results.length; i++) {
     if (generatePreview !== undefined) {
         generatePreview().then((preview) => {
             rhs.appendChild(preview)
+            // if (i != 0) {
+            //     rhs.new(`hr[style="border: none; border-bottom: 1px solid #d9dde1; margin: 2em 0;"]`)
+            // }
         })
         
         break;

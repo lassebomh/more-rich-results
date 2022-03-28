@@ -42,5 +42,8 @@
             "background.js"
         ]
     },
+    "web_accessible_resources": [
+        "public/*"
+    ],      
     "manifest_version": 2
 }

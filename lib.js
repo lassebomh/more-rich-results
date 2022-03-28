@@ -25,6 +25,8 @@ HTMLElement.prototype.new = function (selector, innerHTML) {
     selector = selector.replace(/\[[^\]]+\]/g, "")
 
     let classes = selector.match(/\.([\w-]+)/g)
+    console.log(selector);
+    console.log(classes);
     if (!!classes) classes.forEach((_class) => element.classList.add(_class.slice(1)))
 
     let idMatch = selector.match(/#([\w-]+)/)
@@ -182,7 +184,9 @@ let integrations = [
                     commentMeta.new(`span`, moment(comment.data.created_utc * 1000).fromNow())
                     commentMeta.new(`span`, "•")
                     commentMeta.new(`span`, formatNumber(comment.data.score) + " Upvotes")
-                    commentMeta.new(`span.comment-hidden`, '[hidden]')
+                    
+                    let unhide = commentMeta.new(`label.comment-hidden`)
+                    unhide.setAttribute("for", commentToggle.id)
                     
                     commentMain.new(`div.comment-body`, htmlDecode(comment.data.body_html))
                     
@@ -218,138 +222,14 @@ function getPreviewGenerator(url) {
             let shadowRoot = rootContainer.attachShadow({ "mode": "open" })
 
             let root = document.createElement("div")
-            var inject_sheet = root.new('style')
+            root.style.visibility = "hidden";
+            root.style.opacity = "0";
+            root.classList.add('preview-container')
 
-            // Github theme
-            inject_sheet.innerHTML += `.hljs{color:#24292e;background:#fff}.hljs-doctag,.hljs-keyword,.hljs-meta .hljs-keyword,.hljs-template-tag,.hljs-template-variable,.hljs-type,.hljs-variable.language_{color:#d73a49}.hljs-title,.hljs-title.class_,.hljs-title.class_.inherited__,.hljs-title.function_{color:#6f42c1}.hljs-attr,.hljs-attribute,.hljs-literal,.hljs-meta,.hljs-number,.hljs-operator,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-variable{color:#005cc5}.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#032f62}.hljs-built_in,.hljs-symbol{color:#e36209}.hljs-code,.hljs-comment,.hljs-formula{color:#6a737d}.hljs-name,.hljs-quote,.hljs-selector-pseudo,.hljs-selector-tag{color:#22863a}.hljs-subst{color:#24292e}.hljs-section{color:#005cc5;font-weight:700}.hljs-bullet{color:#735c0f}.hljs-emphasis{color:#24292e;font-style:italic}.hljs-strong{color:#24292e;font-weight:700}.hljs-addition{color:#22863a;background-color:#f0fff4}.hljs-deletion{color:#b31d28;background-color:#ffeef0}`
-            inject_sheet.innerHTML += `pre code.hljs {display: block;overflow-x: auto;padding: 1em;border-radius: 3px;} .hljs {background: #f3f3f3;color: #444;}`
-            // Copy to clipboard plugin
-            inject_sheet.innerHTML += `.hljs-copy-wrapper{position:relative;overflow:hidden}.hljs-copy-wrapper:hover .hljs-copy-button,.hljs-copy-button:focus{transform:translateX(0)}.hljs-copy-button{position:absolute;transform:translateX(calc(100% + 1.125em));top:1em;right:1em;width:2rem;height:2rem;text-indent:-9999px;color:#fff;border-radius:.25rem;border:1px solid #ffffff22;background-color:#2d2b57;background-color:var(--hljs-theme-background);background-image:url('data:image/svg+xml;utf-8,<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 5C5.73478 5 5.48043 5.10536 5.29289 5.29289C5.10536 5.48043 5 5.73478 5 6V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V6C19 5.73478 18.8946 5.48043 18.7071 5.29289C18.5196 5.10536 18.2652 5 18 5H16C15.4477 5 15 4.55228 15 4C15 3.44772 15.4477 3 16 3H18C18.7956 3 19.5587 3.31607 20.1213 3.87868C20.6839 4.44129 21 5.20435 21 6V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7957 3 20V6C3 5.20435 3.31607 4.44129 3.87868 3.87868C4.44129 3.31607 5.20435 3 6 3H8C8.55228 3 9 3.44772 9 4C9 4.55228 8.55228 5 8 5H6Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7 3C7 1.89543 7.89543 1 9 1H15C16.1046 1 17 1.89543 17 3V5C17 6.10457 16.1046 7 15 7H9C7.89543 7 7 6.10457 7 5V3ZM15 3H9V5H15V3Z" fill="white"/></svg>');background-repeat:no-repeat;background-position:center;transition:background-color 200ms ease,transform 200ms ease-out}.hljs-copy-button:hover{border-color:#ffffff44}.hljs-copy-button:active{border-color:#ffffff66}.hljs-copy-button[data-copied="true"]{text-indent:0;width:auto;background-image:none}@media(prefers-reduced-motion){.hljs-copy-button{transition:none}}.hljs-copy-alert{clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px}`
-            inject_sheet.innerHTML += `.hljs-copy-button {background-color: #c8c8c8;}`
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/github.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/highlightjs-copy.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/preview.css");
 
-            inject_sheet.innerHTML += `
-                .clickexpand {
-                    max-height: 100px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    content: "";
-                    position: relative;
-                }
-
-                .clickexpand[show] {
-                    max-height: min-content;
-                }
-
-                .clickexpand:not([show]):before {
-                    content: '';
-                    width: 100%;
-                    height: 100%;    
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    background: linear-gradient(transparent 0px, #fff);
-                    cursor: pointer;
-                    z-index: 1;
-                }
-
-                .preview-container {
-                    /* border: 1px solid #dadce0; */
-                    /* background: #fff; */
-                    /* box-shadow: 0px 2px 6px #00000025; */
-                    border-radius: 6px;
-                    width: 100%;
-                    font-family: Google Sans, arial, sans-serif;
-                    font-size: 15px;
-                    padding: 14px 12px;
-                }
-                
-                .meta-container {
-                    display: flex;
-                    gap: 4px;
-                    font-size: 14px;
-                    color: #777;
-                }
-
-                .comment-toggle {
-                    display: none;
-                }
-
-                .comment-meta {
-                    font-size: 14px;
-                    line-height: 1.8em;
-                }
-            
-                .comment-root {
-                    display: flex;
-                    align-items: stretch;
-                    margin: 15px 0 10px -8px;
-                    word-break: break-word;
-                }
-            
-                .comment-border {
-                    padding: 0 8px;
-                }
-
-                .comment-toggle:not(:checked) ~ .comment-main {
-                    margin-bottom: -9.8px;
-                }
-
-                .comment-body {
-                    margin-top: -10px;
-                }
-
-                .comment-main {
-                    width: calc(100% - 20px);
-                }
-            
-                .comment-border-g {
-                    border: none;
-                    border-left: 2px solid #d9dde1;
-                    margin: 0;
-                    height: 100%;
-                    width: 2px;
-                }
-            
-                .comment-border:hover > .comment-border-g {
-                    border-color: #565d62;
-                }
-
-                .comment-border:active > .comment-border-g {
-                    border-color: #acb0b5;
-                }
-
-                .comment-border:hover {
-                    cursor: pointer;
-                    border-color: #014980;
-                }
-            
-                .comment-toggle:checked ~ .comment-main > .comment-meta ~ * {
-                    display: none;
-                }
-            
-                .comment-toggle:checked ~ .comment-main > .comment-meta {
-                    color: #bbb;
-                }
-
-                .comment-toggle:not(:checked) ~ .comment-main > .comment-meta .comment-hidden {
-                    display: none;
-                }
-
-                hr {
-                    border: none;
-                    border-bottom: 1px solid #aaa;
-                }
-
-                a {
-                    color: #1a0dab;
-                    text-decoration: none;
-                }
-
-                a:hover {
-                    text-decoration: underline;
-                }
-            `
-            root.classList.add("preview-container")
             shadowRoot.appendChild(root)
 
             await match.preview(url, root)
