@@ -326,6 +326,10 @@ function getPreviewGenerator(url) {
                 .comment-toggle:checked ~ .comment-main > .comment-meta ~ * {
                     display: none;
                 }
+            
+                .comment-toggle:checked ~ .comment-main > .comment-meta {
+                    color: #bbb;
+                }
 
                 .comment-toggle:not(:checked) ~ .comment-main > .comment-meta .comment-hidden {
                     display: none;
