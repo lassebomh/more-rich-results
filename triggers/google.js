@@ -19,32 +19,35 @@ var sheet = document.head.innerHTML += `
 let rhs = document.querySelector("#rhs")
 let rcnt = document.querySelector("#rcnt")
 
-if (rhs === null) {
-    rhs = document.createElement("div")
-    rhs.id = "rhs"
-    rcnt.appendChild(rhs)
-}
+if (rcnt != null) {
 
-let results = Array.from(document.querySelectorAll(".g")).filter(g => !g.querySelector(".g"))
+    if (rhs === null) {
+        rhs = document.createElement("div")
+        rhs.id = "rhs"
+        rcnt.appendChild(rhs)
+    }
 
-for (let i = 0; i < results.length; i++) {
-    let link = results[i].querySelector("a");
+    let results = Array.from(document.querySelectorAll(".g")).filter(g => !g.querySelector(".g"))
 
-    if (!link || !link.href) continue;
+    for (let i = 0; i < results.length; i++) {
+        let link = results[i].querySelector("a");
 
-    let resultUrl = new URL(link.href)
-    let generatePreview = getPreviewGenerator(resultUrl)
+        if (!link || !link.href) continue;
 
-    if (generatePreview !== undefined) {
-        generatePreview().then((preview) => {
-            rhs.appendChild(preview)
-            // if (i != 0) {
-            //     rhs.new(`hr[style="border: none; border-bottom: 1px solid #d9dde1; margin: 2em 0;"]`)
-            // }
-        })
-        
-        break;
+        let resultUrl = new URL(link.href)
+        let generatePreview = getPreviewGenerator(resultUrl)
+
+        if (generatePreview !== undefined) {
+            generatePreview().then((preview) => {
+                rhs.appendChild(preview)
+                // if (i != 0) {
+                //     rhs.new(`hr[style="border: none; border-bottom: 1px solid #d9dde1; margin: 2em 0;"]`)
+                // }
+            })
+            
+            break;
+        }
+
     }
 
 }
-

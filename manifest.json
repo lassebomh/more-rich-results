@@ -6,9 +6,13 @@
         "tabs",
         "<all_urls>"
     ],
+    "icons": {
+        "32": "public/icon_32.png",
+        "128": "public/icon_128.png"
+    },
     "browser_action": {
-        "default_icon": "public/icon.png",
-        "default_popup": "html/popup.html",
+        "default_icon": "public/icon_128.png",
+        "default_popup": "public/popup.html",
         "default_title": "Settings"
     },
     "content_scripts": [
@@ -17,9 +21,9 @@
                 "<all_urls>"
             ],
             "js": [
-                "public/moment.min.js",
-                "public/highlight.min.js",
-                "public/highlightjs-copy.min.js",
+                "public/js/moment.min.js",
+                "public/js/highlight.min.js",
+                "public/js/highlightjs-copy.min.js",
                 "lib.js"
             ],
             "run_at": "document_end"

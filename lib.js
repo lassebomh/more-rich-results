@@ -25,8 +25,6 @@ HTMLElement.prototype.new = function (selector, innerHTML) {
     selector = selector.replace(/\[[^\]]+\]/g, "")
 
     let classes = selector.match(/\.([\w-]+)/g)
-    console.log(selector);
-    console.log(classes);
     if (!!classes) classes.forEach((_class) => element.classList.add(_class.slice(1)))
 
     let idMatch = selector.match(/#([\w-]+)/)
@@ -104,7 +102,6 @@ let integrations = [
             let answers = stackdata.answers.sort((a,b) => b.score - a.score);
 
             let topanswer = answers[0]
-            console.log(topanswer);
 
             let answerBody = root.new(`div`, topanswer.body)
 
@@ -206,8 +203,6 @@ let integrations = [
                 }
             }
 
-            console.log(post[1].data.children);
-
             crawlComments(root, post[1].data.children);
         }
     }
@@ -226,9 +221,9 @@ function getPreviewGenerator(url) {
             root.style.opacity = "0";
             root.classList.add('preview-container')
 
-            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/github.css");
-            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/highlightjs-copy.css");
-            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/preview.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/css/github.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/css/highlightjs-copy.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/css/preview.css");
 
             shadowRoot.appendChild(root)
 
