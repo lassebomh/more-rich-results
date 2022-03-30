@@ -39,7 +39,20 @@
                 "triggers/google.js"
             ],
             "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "*://*/*"
+            ],
+            "include_globs": [
+                "*://duckduckgo.*/?q=*"
+            ],
+            "js": [
+                "triggers/ddg.js"
+            ],
+            "run_at": "document_end"
         }
+
     ],
     "background": {
         "scripts": [

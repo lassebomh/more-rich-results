@@ -71,6 +71,7 @@ hljs.addPlugin(new CopyButtonPlugin());
 
 let integrations = [
     {
+        "type":"stackexchange",
         "match": (url) => stackexchangeSites.indexOf(url.hostname) !== -1 && (url.pathname.startsWith("/questions/") || url.pathname.startsWith("/q/")),
         "preview": async (url, root) => {
 
@@ -115,6 +116,7 @@ let integrations = [
         }
     },
     {
+        "type":"reddit",
         "match": (url) => url.hostname === "www.reddit.com" && /^\/r\/[\w_-]+\/comments\/[\w_-]+\/[\w_-]+\//.test(url.pathname),
         "preview": async (url, root) => {
             let requestUrl = url.href
@@ -210,7 +212,7 @@ let integrations = [
 
 function getPreviewGenerator(url) {
     let match = integrations.find((integration) => integration.match(url))
-    return match && (
+    return match && [match.name, (
         async () => {
 
             let rootContainer = document.createElement("div")
@@ -235,5 +237,5 @@ function getPreviewGenerator(url) {
 
             return rootContainer
         }
-    )
+    )]
 }
