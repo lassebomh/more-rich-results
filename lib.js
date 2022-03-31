@@ -197,7 +197,7 @@ let integrations = [
                         let moreLink = root.new(`a`, "All replies...")
                         moreLink.href = "https://www.reddit.com" + post[0].data.children[0].data.permalink
                         moreLink.style.fontSize = "16px"
-                        moreLink.style.textAlign = "left"
+                        moreLink.style.textAlign = "center"
                         moreLink.style.display = "block"
                         moreLink.style.marginTop = "1em";
                         break
@@ -212,7 +212,7 @@ let integrations = [
 
 function getPreviewGenerator(url) {
     let match = integrations.find((integration) => integration.match(url))
-    return match && [match.name, (
+    return [match && match.name, match && (
         async () => {
 
             let rootContainer = document.createElement("div")

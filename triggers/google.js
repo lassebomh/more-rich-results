@@ -2,7 +2,15 @@
 if (window.location.toString().indexOf("gbv=1") !== -1) {
     console.log("ON NOSCRIPT")
 
-    // modify queestions
+    // Make all links avoid bounce
+    document.querySelectorAll("a").forEach(e => {
+        href = new URL(e.href)
+        if (href.pathname === "/url") {
+            e.href = href.searchParams.get('q')
+        }
+    })
+
+    // Make questions foldable
     let questionBoxes = document.querySelectorAll(".xpd .xpd") 
     for (const qb of questionBoxes) {
         let qcontainer = qb.parentElement.parentElement.parentElement
@@ -18,44 +26,94 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
         qsummary.innerHTML = qdetails.firstChild.innerHTML;
         qsummary.classList = qdetails.firstChild.classList;
         qsummary.style.cursor = "pointer";
+        qsummary.style.marginLeft = "3px";
+        qsummary.firstChild.style.fontSize = "1.1em";
 
         qdetails.replaceChild(qsummary, qdetails.firstChild);
     }
 
-    document.body.style.maxWidth = "100%"
-    let mainWrapper = document.createElement("div")
-    mainWrapper.id = "main-wrapper"
+    // Add modern styling
+    let a = document.querySelector("#hdr + div > div > div")
+    a.style.boxShadow = "none"
+    a.style.borderRadius = "initial"
 
-    let main = document.querySelector("#main")
-    main.style.maxWidth = "652px"
+    a.parentElement.style.marginTop = "10px"
 
-    mainWrapper.append(main);
-    main.insertBefore(document.querySelector("#hdr"), main.firstChild);
+    let b = a.firstElementChild
+    b.style.backgroundColor = "transparent"
+    b.style.borderTop = "none"
+    console.log(b)
 
-    document.body.insertBefore(mainWrapper, document.querySelector(".csi"))
+    let c = document.querySelector("#hdr > :last-child")
+    c.style.borderRadius = "100px"
+    c.style.marginTop = "32px"
 
-    richResults = mainWrapper.new(`div#rich-results`)
+    let f = c.firstElementChild
+    c.style.height = "44px"
 
-    let results = Array.from(document.querySelectorAll(".xpd")).filter(g => !g.querySelector(".xpd"))
+    let sbc = document.querySelector("#sf div.sbc.esbc")
+    sbc.style.margin = "2.7px 3px"
+
+    let sbcbutton = document.querySelector("#sf button[type=submit]")
+    sbcbutton.style.height = "44px"
+    sbcbutton.style.width = "48px"
+    sbcbutton.style.borderTopRightRadius = "100px"
+    sbcbutton.style.borderBottomRightRadius = "100px"
+    sbcbutton.style.backgroundPosition = "3px center";
+
     
-    for (let i = 0; i < results.length; i++) {
-        let link = results[i].querySelector("a");
+    
+    Array.from(b.firstElementChild.firstElementChild.children).forEach((e, i, a) => {
+        e.style.padding = "0 8px"
+        e.style.lineHeight = "40px"
 
-        if (!link || !link.href) continue;
-
-        let resultUrl = new URL(link.href)
-        console.log();
-        let [type, generatePreview] = getPreviewGenerator(resultUrl)
-
-        if (generatePreview !== undefined) {
-            generatePreview().then((preview) => {
-                richResults.appendChild(preview)
-                // if (i != 0) {
-                //     rhs.new(`hr[style="border: none; border-bottom: 1px solid #d9dde1; margin: 2em 0;"]`)
-                // }
-            })
+        if (i == a.length - 1) {
+            e.style.borderLeft = "none"
+            e.firstElementChild.style.padding = "0"
+        }
+    })
+    
+    
+    // Generate preview
+    if ( (new URL(window.location).searchParams.get("tbm")) === null ) {
             
-            break;
+        document.body.style.maxWidth = "100%"
+        let mainWrapper = document.createElement("div")
+        mainWrapper.id = "main-wrapper"
+        mainWrapper.style.display = "flex"
+
+        let main = document.querySelector("#main")
+        main.style.maxWidth = "652px"
+
+        mainWrapper.append(main);
+        main.insertBefore(document.querySelector("#hdr"), main.firstChild);
+
+        document.body.insertBefore(mainWrapper, document.querySelector(".csi"))
+
+        let richResults = mainWrapper.new(`div#rich-results`)
+        richResults.style.marginTop = "120px"
+        richResults.style.marginLeft = "60px"
+        richResults.style.maxWidth = "620px"
+
+        let results = document.querySelectorAll(".xpd")
+
+        
+        for (let i = 0; i < results.length; i++) {
+            let link = Array.from(results[i].querySelectorAll("a")).find(e => e.querySelector("img") == null);
+            
+            if (!link || !link.href) continue;
+            
+            let resultUrl = new URL(link.href)
+
+            let [type, generatePreview] = getPreviewGenerator(resultUrl)
+
+            if (generatePreview !== undefined) {
+                generatePreview().then((preview) => {
+                    richResults.appendChild(preview)
+                })
+                
+                break;
+            }
         }
     }
 
@@ -102,9 +160,6 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
             if (generatePreview !== undefined) {
                 generatePreview().then((preview) => {
                     rhs.appendChild(preview)
-                    // if (i != 0) {
-                    //     rhs.new(`hr[style="border: none; border-bottom: 1px solid #d9dde1; margin: 2em 0;"]`)
-                    // }
                 })
                 
                 break;
