@@ -159,7 +159,7 @@ let integrations = [
 
             let title = titleLink.new(`h3`, htmlDecode(post[0].data.children[0].data.title))
             title.style.fontFamily = "arial,sans-serif;"
-            title.style.fontSize = "1.2em"
+            title.style.fontSize = "20px"
             title.style.fontWeight = "400"
             title.style.margin = "6px 0 -2px 0"
 
