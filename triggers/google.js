@@ -2,8 +2,27 @@
 if (window.location.toString().indexOf("gbv=1") !== -1) {
     console.log("ON NOSCRIPT")
 
-    document.body.style.maxWidth = "100%"
+    // modify queestions
+    let questionBoxes = document.querySelectorAll(".xpd .xpd") 
+    for (const qb of questionBoxes) {
+        let qcontainer = qb.parentElement.parentElement.parentElement
 
+        var qdetails = document.createElement('details');
+        qdetails.innerHTML = qcontainer.innerHTML;
+        qdetails.classList = qcontainer.firstChild.classList;
+        qdetails.style.padding = "0";
+        
+        qcontainer.parentNode.replaceChild(qdetails, qcontainer);
+
+        var qsummary = document.createElement('summary');
+        qsummary.innerHTML = qdetails.firstChild.innerHTML;
+        qsummary.classList = qdetails.firstChild.classList;
+        qsummary.style.cursor = "pointer";
+
+        qdetails.replaceChild(qsummary, qdetails.firstChild);
+    }
+
+    document.body.style.maxWidth = "100%"
     let mainWrapper = document.createElement("div")
     mainWrapper.id = "main-wrapper"
 
@@ -13,7 +32,7 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
     mainWrapper.append(main);
     main.insertBefore(document.querySelector("#hdr"), main.firstChild);
 
-    let csi = document.body.insertBefore(mainWrapper, document.querySelector(".csi"))
+    document.body.insertBefore(mainWrapper, document.querySelector(".csi"))
 
     richResults = mainWrapper.new(`div#rich-results`)
 
@@ -25,6 +44,7 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
         if (!link || !link.href) continue;
 
         let resultUrl = new URL(link.href)
+        console.log();
         let [type, generatePreview] = getPreviewGenerator(resultUrl)
 
         if (generatePreview !== undefined) {
