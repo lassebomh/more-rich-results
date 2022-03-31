@@ -29,27 +29,21 @@
             "run_at": "document_end"
         },
         {
-            "matches": [
-                "*://*/*"
-            ],
-            "include_globs": [
-                "*://*.google.*/search*"
-            ],
-            "js": [
-                "triggers/google.js"
-            ],
+            "matches": [ "*://*/*" ],
+            "include_globs": [ "*://*.google.*/search*" ],
+            "js": [ "triggers/google.js" ],
             "run_at": "document_end"
         },
         {
-            "matches": [
-                "*://*/*"
-            ],
-            "include_globs": [
-                "*://duckduckgo.*/?q=*"
-            ],
-            "js": [
-                "triggers/ddg.js"
-            ],
+            "matches": [ "*://*/*" ],
+            "include_globs": [ "*://*.google.*/search*gbv=1*" ],
+            "css": [ "public/css/google-noscript.css" ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*/*" ],
+            "include_globs": [ "*://duckduckgo.*/?q=*" ],
+            "js": [ "triggers/ddg.js" ],
             "run_at": "document_end"
         }
 

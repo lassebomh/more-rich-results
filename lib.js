@@ -136,9 +136,23 @@ let integrations = [
 
             let meta = root.new(`div.meta-container`)
 
-            meta.new(`span`, "Posted by u/" + post[0].data.children[0].data.author + " " + moment(post[0].data.children[0].data.created_utc * 1000).fromNow())
-            meta.new(`span`, "•")
-            meta.new(`span`, formatNumber(post[0].data.children[0].data.score) + " Upvotes")
+            let section0 = meta.new(`div`)
+            section0.new(`span`, "Posted by ")
+            let authorLink = section0.new(`a`, "u/" + post[0].data.children[0].data.author + " ")
+            authorLink.style.color = "inherit"
+            authorLink.href = "https://www.reddit.com/user/" + post[0].data.children[0].data.author
+            section0.new(`span`, moment(post[0].data.children[0].data.created_utc * 1000).fromNow())
+
+            meta.new(`div`, "•")
+            
+            let section1 = meta.new(`div`)
+            let subredditLink = section1.new(`a`, "r/"+post[0].data.children[0].data.subreddit)
+            subredditLink.style.color = "inherit"
+            subredditLink.href = "https://www.reddit.com/r/"+post[0].data.children[0].data.subreddit
+            
+            meta.new(`div`, "•")
+            
+            meta.new(`div`, formatNumber(post[0].data.children[0].data.score) + " Upvotes")
 
             let titleLink = root.new("a")
             titleLink.href = url.href
@@ -178,12 +192,17 @@ let integrations = [
                     let commentMeta = commentMain.new(`div.meta-container.comment-meta`)
                     commentMeta.style.fontStyle = "16px;"
                     
-                    commentMeta.new(`span`, "u/" + comment.data.author)
-                    commentMeta.new(`span`, "•")
-                    commentMeta.new(`span`, moment(comment.data.created_utc * 1000).fromNow())
-                    commentMeta.new(`span`, "•")
-                    commentMeta.new(`span`, formatNumber(comment.data.score) + " Upvotes")
+                    let section0 = commentMeta.new(`div`)
+                    let authorLink = section0.new(`a`, "u/" + comment.data.author + " ")
+                    authorLink.style.color = "inherit"
+                    authorLink.href = "https://www.reddit.com/user/" + comment.data.author
+                    section0.new(`span`, moment(comment.data.created_utc * 1000).fromNow())
+
+                    commentMeta.new(`div`, "•")
                     
+                    commentMeta.new(`div`, formatNumber(comment.data.score) + " Upvotes")
+
+
                     let unhide = commentMeta.new(`label.comment-hidden`)
                     unhide.setAttribute("for", commentToggle.id)
                     
