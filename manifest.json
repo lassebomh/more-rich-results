@@ -36,6 +36,12 @@
         },
         {
             "matches": [ "*://*/*" ],
+            "include_globs": [ "*://*.google.*/search*" ],
+            "css": [ "public/css/google-theme.css" ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*gbv=1*" ],
             "css": [ "public/css/google-noscript-theme.css" ],
             "run_at": "document_start"

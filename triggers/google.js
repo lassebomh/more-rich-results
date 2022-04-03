@@ -83,6 +83,11 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
             rhs.id = "rhs"
             rcnt.appendChild(rhs)
         }
+
+        rhs.style.marginLeft = "2em"
+        rhs.style.width = "652px"
+        rcnt.style.flexWrap = "initial"
+        rcnt.style.maxWidth = "initial"
     
         let results = Array.from(document.querySelectorAll(".g")).filter(g => !g.querySelector(".g"))
     

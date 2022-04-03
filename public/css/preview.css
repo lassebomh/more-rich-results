@@ -63,8 +63,7 @@ pre code.hljs {
 }
 
 .preview-container img {
-    width: calc(100% - 2em);
-    margin-left: 1em;
+    width: auto;
     margin-top: 1em;
 }
 
