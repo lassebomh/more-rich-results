@@ -37,7 +37,7 @@
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*gbv=1*" ],
-            "css": [ "public/css/google-noscript.css" ],
+            "css": [ "public/css/google-noscript-theme.css" ],
             "run_at": "document_start"
         },
         {

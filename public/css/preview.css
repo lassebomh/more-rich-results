@@ -52,6 +52,7 @@ pre code.hljs {
     opacity: 100% !important;
     
     padding: 0;
+    line-height: initial;
 
     /* border: 1px solid #dfe1e5;
     padding: 18px 24px; */
@@ -59,6 +60,12 @@ pre code.hljs {
     /* box-shadow: 0.5px 1.5px 5px #00000015;
     padding: 14px 16px;
     border-radius: 9px; */
+}
+
+.preview-container img {
+    width: calc(100% - 2em);
+    margin-left: 1em;
+    margin-top: 1em;
 }
 
 .meta-container {

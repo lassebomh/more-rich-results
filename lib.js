@@ -132,39 +132,39 @@ let integrations = [
                 });
             }));
 
+            let postData = post[0].data.children[0].data
+            postData = postData.crosspost_parent_list !== undefined ? postData.crosspost_parent_list[0] : postData
+
             if (post.length === undefined) return null
 
             let meta = root.new(`div.meta-container`)
 
             let section0 = meta.new(`div`)
             section0.new(`span`, "Posted by ")
-            let authorLink = section0.new(`a`, "u/" + post[0].data.children[0].data.author + " ")
+            let authorLink = section0.new(`a`, "u/" + postData.author + " ")
             authorLink.style.color = "inherit"
-            authorLink.href = "https://www.reddit.com/user/" + post[0].data.children[0].data.author
-            section0.new(`span`, moment(post[0].data.children[0].data.created_utc * 1000).fromNow())
+            authorLink.href = "https://www.reddit.com/user/" + postData.author
+            section0.new(`span`, moment(postData.created_utc * 1000).fromNow())
 
             meta.new(`div`, "•")
             
             let section1 = meta.new(`div`)
-            let subredditLink = section1.new(`a`, "r/"+post[0].data.children[0].data.subreddit)
+            let subredditLink = section1.new(`a`, "r/"+postData.subreddit)
             subredditLink.style.color = "inherit"
-            subredditLink.href = "https://www.reddit.com/r/"+post[0].data.children[0].data.subreddit
+            subredditLink.href = "https://www.reddit.com/r/"+postData.subreddit
             
             meta.new(`div`, "•")
             
-            meta.new(`div`, formatNumber(post[0].data.children[0].data.score) + " Upvotes")
+            meta.new(`div`, formatNumber(postData.score) + " upvotes")
 
             let titleLink = root.new("a")
             titleLink.href = url.href
 
-            let title = titleLink.new(`h3`, htmlDecode(post[0].data.children[0].data.title))
+            let title = titleLink.new(`h3`, htmlDecode(postData.title))
             title.style.fontFamily = "arial,sans-serif;"
             title.style.fontSize = "20px"
             title.style.fontWeight = "400"
             title.style.margin = "6px 0 -2px 0"
-
-            // let postBody = root.new(`div.clickexpand[style='color: #444']`, htmlDecode(post[0].data.children[0].data.selftext_html))
-            // postBody.addEventListener("click", (e) => e.target.setAttribute("show", ""))
 
             function crawlComments(root, comments, depth) {
 
@@ -176,11 +176,53 @@ let integrations = [
                 for (let i = 0; i < comments.length; i++) { //REDDIT_MAX_REPLY_COUNT
 
                     const comment = comments[i];
+                    
+                    let hidePost;
+                    let expandPost;
+
+                    if (depth == 0 && i == 0) {
+
+                        let postCommentScoreRatio = comment.data.score / postData.score
+
+                        hidePost = postCommentScoreRatio > 0.38
+                        expandPost = !hidePost && postCommentScoreRatio < 0.22
+
+                        let isImagePost = false
+
+                        let urlSplit = postData.url.split("/")
+                        let lastElement = urlSplit[urlSplit.length - 1]
+
+                        if (lastElement !== "") {
+                            let fileSplit = lastElement.split(".")
+                            
+                            if (fileSplit.length > 1 && ["apng","avif","bmp","wmf","gif","ico","jpg","jpeg","jpe","jif","jfif","png","svg","svgz","tif","tiff","webp","xbm"].indexOf(fileSplit[fileSplit.length - 1].toLowerCase())) {
+                                isImagePost = true
+                            }
+                        }
+
+                        if (!hidePost) {
+                            if (isImagePost) {
+                                let postBodyImg = root.new(`img`)
+                                postBodyImg.src = postData.url
+                            } else {
+                                let postBody = root.new(`div`, htmlDecode(postData.selftext_html))
+                                postBody.style.color = "#444"
+        
+                                if (!expandPost) {
+                                    postBody.classList.add("clickexpand")
+                                    postBody.addEventListener("click", (e) => e.target.setAttribute("show", ""))
+                                }
+                            }
+                        }
+                    }
+
 
                     let commentRoot = root.new(`div.comment-root`)
                     
+                    let expandComment = (i == 0 && depth < 2) && !expandPost
+
                     let commentToggle = commentRoot.new(`input.comment-toggle[type=checkbox]`)
-                    commentToggle.checked = !(i == 0 && depth < 2)
+                    commentToggle.checked = !expandComment && !expandPost
                     commentToggle.id = "comment-toggle-" + makeid()
                     
                     let commentLabel = commentRoot.new(`label.comment-border`)
@@ -191,12 +233,12 @@ let integrations = [
                     
                     let commentMeta = commentMain.new(`div.meta-container.comment-meta`)
                     commentMeta.style.fontStyle = "16px;"
-                    
-                    let section0 = commentMeta.new(`div`)
-                    let authorLink = section0.new(`a`, "u/" + comment.data.author + " ")
+                                        
+                    let authorLink = commentMeta.new(`a`, "u/" + comment.data.author + " ")
                     authorLink.style.color = "inherit"
                     authorLink.href = "https://www.reddit.com/user/" + comment.data.author
-                    section0.new(`span`, moment(comment.data.created_utc * 1000).fromNow())
+
+                    commentMeta.new(`span`, moment(comment.data.created_utc * 1000).fromNow())
 
                     commentMeta.new(`div`, "•")
                     
@@ -214,7 +256,7 @@ let integrations = [
                     
                     if (i == REDDIT_MAX_REPLY_COUNT - 1 && depth == 0) {
                         let moreLink = root.new(`a`, "All replies...")
-                        moreLink.href = "https://www.reddit.com" + post[0].data.children[0].data.permalink
+                        moreLink.href = "https://www.reddit.com" + postData.permalink
                         moreLink.style.fontSize = "16px"
                         moreLink.style.textAlign = "center"
                         moreLink.style.display = "block"
