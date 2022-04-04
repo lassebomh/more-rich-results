@@ -63,13 +63,13 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
 
             if (generatePreview !== undefined) {
                 generatePreview().then((preview) => {
-                    let ddgSheet = document.createElement('style')
-                    ddgSheet.innerHTML = `
-                        .reddit-title-link {
+                    let sheet = document.createElement('style')
+                    sheet.innerHTML = `
+                        .preview-container a {
                             color: #1a0dab;
                         }
                     `
-                    preview.shadowRoot.appendChild(ddgSheet)
+                    preview.shadowRoot.appendChild(sheet)
                     
                     richResults.appendChild(preview)
                 })
@@ -109,13 +109,13 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
     
             if (generatePreview !== undefined) {
                 generatePreview().then((preview) => {
-                    let ddgSheet = document.createElement('style')
-                    ddgSheet.innerHTML = `
-                        .reddit-title-link {
+                    let sheet = document.createElement('style')
+                    sheet.innerHTML = `
+                        .preview-container a {
                             color: #1a0dab;
                         }
                     `
-                    preview.shadowRoot.appendChild(ddgSheet)
+                    preview.shadowRoot.appendChild(sheet)
 
                     rhs.appendChild(preview)
                 })
