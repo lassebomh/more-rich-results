@@ -1,6 +1,6 @@
 {
     "name": "More Rich Results",
-    "description": "",
+    "description": "Add more types of rich results in search engines.",
     "version": "0.1",
     "permissions": [
         "tabs",
@@ -28,8 +28,6 @@
             ],
             "run_at": "document_end"
         },
-
-
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*" ],
@@ -42,7 +40,6 @@
             "css": [ "public/css/themes/google-noscript-theme.css" ],
             "run_at": "document_start"
         },
-
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://html.duckduckgo.*/html?q=*", "*://html.duckduckgo.*/html/?q=*", "*://html.duckduckgo.*/html/" ],
