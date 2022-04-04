@@ -327,10 +327,10 @@ let integrations = [
                     
                     let hidePost;
                     let expandPost;
+                    let isImagePost = false;
 
                     if (depth == 0 && i == 0) {
 
-                        let isImagePost = false
                         let urlSplit = postData.url.split("/")
                         let lastElement = urlSplit[urlSplit.length - 1]
 
@@ -347,7 +347,7 @@ let integrations = [
                         hidePost = postCommentScoreRatio > 0.38
                         expandPost = !hidePost && postCommentScoreRatio < 0.22
 
-                        if (!hidePost) {
+                        if (true){//(!hidePost) {
                             if (isImagePost) {
                                 let postBodyImg = root.new(`img`)
                                 postBodyImg.src = postData.url
@@ -366,10 +366,10 @@ let integrations = [
 
                     let commentRoot = root.new(`div.comment-root`)
                     
-                    let expandComment = (i == 0 && depth < 2) && !expandPost
+                    let expandComment = (i == 0 && depth < 2) && !expandPost && !isImagePost
 
                     let commentToggle = commentRoot.new(`input.comment-toggle[type=checkbox]`)
-                    commentToggle.checked = !expandComment && !expandPost
+                    commentToggle.checked = !expandComment
                     commentToggle.id = "comment-toggle-" + makeid()
                     
                     let commentLabel = commentRoot.new(`label.comment-border`)
@@ -377,20 +377,16 @@ let integrations = [
                     commentLabel.new(`div.comment-border-g`, " ")
                     
                     let commentMain = commentRoot.new(`div.comment-main`)
-                    
                     let commentMeta = commentMain.new(`div.meta-container.comment-meta`)
-                    commentMeta.style.fontStyle = "16px;"
+                    commentMeta.style.fontStyle = "16px"
                                         
                     let authorLink = commentMeta.new(`a`, "u/" + comment.data.author + " ")
                     authorLink.style.color = "inherit"
                     authorLink.href = "https://www.reddit.com/user/" + comment.data.author
 
                     commentMeta.new(`span`, moment(comment.data.created_utc * 1000).fromNow())
-
                     commentMeta.new(`div`, "•")
-                    
                     commentMeta.new(`div`, formatNumber(comment.data.score) + " Upvotes")
-
 
                     let unhide = commentMeta.new(`label.comment-hidden`)
                     unhide.setAttribute("for", commentToggle.id)
