@@ -20,6 +20,19 @@ setTimeout(() => {
 
         if (generatePreview !== undefined) {
             generatePreview().then((preview) => {
+                let ddgSheet = document.createElement('style')
+                ddgSheet.innerHTML = `
+                    a {
+                        color: var(--mrr-color-0);
+                        font-weight: bold;
+                    }
+
+                    .preview-container {
+                        font-family: "DDG_ProximaNova","DDG_ProximaNova_UI_0","DDG_ProximaNova_UI_1","DDG_ProximaNova_UI_2","DDG_ProximaNova_UI_3","DDG_ProximaNova_UI_4","DDG_ProximaNova_UI_5","DDG_ProximaNova_UI_6","Proxima Nova","Helvetica Neue","Helvetica","Segoe UI","Nimbus Sans L","Liberation Sans","Open Sans",FreeSans,Arial,sans-serif;
+                    }
+                `
+                preview.shadowRoot.appendChild(ddgSheet)
+                
                 resultsSidebar.appendChild(preview)
             })
             break;

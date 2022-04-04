@@ -5,7 +5,7 @@ function midVec(hsl1, hsl0, frac) {
     return [
         hsl1[0] + (hsl0[0] - hsl1[0]) * frac,
         hsl1[1] + (hsl0[1] - hsl1[1]) * frac,
-        hsl1[2] + (hsl0[2] - hsl1[2]) * frac
+        hsl1[2] + (hsl0[2] - hsl1[2]) * frac,
     ]
 }
 

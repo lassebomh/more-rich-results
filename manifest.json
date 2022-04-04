@@ -39,12 +39,6 @@
         },
         {
             "matches": [ "*://*/*" ],
-            "include_globs": [ "*://*.google.*/search*" ],
-            "css": [ "public/css/themes/google-theme.css" ],
-            "run_at": "document_start"
-        },
-        {
-            "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*gbv=1*" ],
             "css": [ "public/css/themes/google-noscript-theme.css" ],
             "run_at": "document_start"
@@ -56,12 +50,6 @@
             "include_globs": [ "*://duckduckgo.*/?q=*" ],
             "js": [ "triggers/ddg.js" ],
             "run_at": "document_end"
-        },
-        {
-            "matches": [ "*://*/*" ],
-            "include_globs": [ "*://duckduckgo.*/?q=*" ],
-            "css": [ "public/css/themes/duckduckgo-theme.css" ],
-            "run_at": "document_start"
         }
     ],
     "background": {
