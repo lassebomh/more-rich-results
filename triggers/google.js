@@ -63,6 +63,14 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
 
             if (generatePreview !== undefined) {
                 generatePreview().then((preview) => {
+                    let ddgSheet = document.createElement('style')
+                    ddgSheet.innerHTML = `
+                        .reddit-title-link {
+                            color: #1a0dab;
+                        }
+                    `
+                    preview.shadowRoot.appendChild(ddgSheet)
+                    
                     richResults.appendChild(preview)
                 })
                 
@@ -101,6 +109,14 @@ if (window.location.toString().indexOf("gbv=1") !== -1) {
     
             if (generatePreview !== undefined) {
                 generatePreview().then((preview) => {
+                    let ddgSheet = document.createElement('style')
+                    ddgSheet.innerHTML = `
+                        .reddit-title-link {
+                            color: #1a0dab;
+                        }
+                    `
+                    preview.shadowRoot.appendChild(ddgSheet)
+
                     rhs.appendChild(preview)
                 })
                 

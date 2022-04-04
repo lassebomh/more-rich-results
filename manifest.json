@@ -7,11 +7,10 @@
         "<all_urls>"
     ],
     "icons": {
-        "32": "public/icon_32.png",
-        "128": "public/icon_128.png"
+        "128": "public/icon_106.png"
     },
     "browser_action": {
-        "default_icon": "public/icon_128.png",
+        "default_icon": "public/icon_106.png",
         "default_popup": "public/popup.html",
         "default_title": "Settings"
     },
@@ -44,7 +43,12 @@
             "run_at": "document_start"
         },
 
-
+        {
+            "matches": [ "*://*/*" ],
+            "include_globs": [ "*://html.duckduckgo.*/html?q=*", "*://html.duckduckgo.*/html/?q=*", "*://html.duckduckgo.*/html/" ],
+            "js": [ "triggers/ddg-noscript.js" ],
+            "run_at": "document_end"
+        },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://duckduckgo.*/?q=*" ],

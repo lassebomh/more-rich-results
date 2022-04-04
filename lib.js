@@ -353,7 +353,7 @@ let integrations = [
                                 postBodyImg.src = postData.url
                             } else {
                                 let postBody = root.new(`div`, htmlDecode(postData.selftext_html))
-                                postBody.style.color = "#444"
+                                // postBody.style.color = "#444"
         
                                 if (!expandPost) {
                                     postBody.classList.add("clickexpand")

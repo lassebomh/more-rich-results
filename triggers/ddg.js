@@ -1,3 +1,4 @@
+console.log("DDG")
 
 Array.from(document.querySelectorAll(".js-sidebar-modules")).forEach((e) => {
     e.parentNode.removeChild(e);
@@ -24,7 +25,7 @@ setTimeout(() => {
                 ddgSheet.innerHTML = `
                     a {
                         color: var(--mrr-color-0);
-                        font-weight: bold;
+                        font-weight: 600;
                     }
 
                     .preview-container {

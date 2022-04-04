@@ -2,6 +2,9 @@
 let htmlRoot = document.querySelector(":root")
 
 function midVec(hsl1, hsl0, frac) {
+    // hsl1 = hsl1.map(Number)
+    // hsl0 = hsl0.map(Number)
+
     return [
         hsl1[0] + (hsl0[0] - hsl1[0]) * frac,
         hsl1[1] + (hsl0[1] - hsl1[1]) * frac,
@@ -9,16 +12,21 @@ function midVec(hsl1, hsl0, frac) {
     ]
 }
 
-// console.log(getComputedStyle(htmlRoot)["background-color"]);
-
 let bgColor = getComputedStyle(htmlRoot)["background-color"]
 
-if (bgColor === "rgba(0, 0, 0, 0)") {
+if (bgColor === "rgba(0, 0, 0, 0)" || bgColor === "rgb(0, 0, 0)") {
     bgColor = getComputedStyle(document.body)["background-color"]
 }
 
+if (bgColor === "rgba(0, 0, 0, 0)" || bgColor === "rgb(0, 0, 0)") {
+    bgColor = "rgb(255, 255, 255)"
+
+}
+
+
 let bg = rgbToHsl(...parseColor(bgColor))
-let fg = [bg[0], bg[1], bg[2] * -1 + 1]
+// let fg = [bg[0], bg[1], bg[2] * -1 + 1]
+let fg = [bg[0], bg[1], bg[2] * -1 + 1, 1]
 
 let sheet = document.createElement(`style`)
 sheet.innerHTML = `

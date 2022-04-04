@@ -108,18 +108,18 @@ pre code.hljs {
 
 .comment-border-g {
     border: none;
-    border-left: 2px solid var(--mrr-color-85);
+    border-left: 2px solid var(--mrr-color-80);
     margin: 0;
     height: 100%;
     width: 2px;
 }
 
 .comment-border:hover>.comment-border-g {
-    border-left-color: var(--mrr-color-80);
+    border-left-color: var(--mrr-color-75);
 }
 
 .comment-border:active>.comment-border-g {
-    border-left-color: var(--mrr-color-90);
+    border-left-color: var(--mrr-color-85);
 }
 
 .comment-border:hover {
