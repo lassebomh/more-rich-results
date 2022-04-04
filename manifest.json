@@ -24,10 +24,13 @@
                 "public/js/moment.min.js",
                 "public/js/highlight.min.js",
                 "public/js/highlightjs-copy.min.js",
-                "lib.js"
+                "lib.js",
+                "public/js/generate-theme.js"
             ],
             "run_at": "document_end"
         },
+
+
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*" ],
@@ -37,22 +40,29 @@
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*" ],
-            "css": [ "public/css/google-theme.css" ],
+            "css": [ "public/css/themes/google-theme.css" ],
             "run_at": "document_start"
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*gbv=1*" ],
-            "css": [ "public/css/google-noscript-theme.css" ],
+            "css": [ "public/css/themes/google-noscript-theme.css" ],
             "run_at": "document_start"
         },
+
+
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://duckduckgo.*/?q=*" ],
             "js": [ "triggers/ddg.js" ],
             "run_at": "document_end"
+        },
+        {
+            "matches": [ "*://*/*" ],
+            "include_globs": [ "*://duckduckgo.*/?q=*" ],
+            "css": [ "public/css/themes/duckduckgo-theme.css" ],
+            "run_at": "document_start"
         }
-
     ],
     "background": {
         "scripts": [

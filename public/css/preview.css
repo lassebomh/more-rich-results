@@ -12,7 +12,7 @@ pre code.hljs {
 }
 
 .hljs-copy-button {
-    background-color: #c8c8c8;
+    background-color: var(--mrr-color-10);
 }
 
 .clickexpand {
@@ -34,15 +34,15 @@ pre code.hljs {
     position: absolute;
     left: 0;
     top: 0;
-    background: linear-gradient(transparent 0px, #fff);
+    background: linear-gradient(transparent 0px, var(--mrr-color-100));
     cursor: pointer;
     z-index: 1;
 }
 
 .preview-container {
     border-radius: 8px;
+    color: var(--mrr-color-0);
     width: auto;
-    font-family: Google Sans, arial, sans-serif;
     font-size: 15px;
     padding: 14px 12px;
     
@@ -71,7 +71,7 @@ pre code.hljs {
     display: flex;
     gap: 4px;
     font-size: 14px;
-    color: #959595;
+    color: var(--mrr-color-50);
 }
 
 .comment-toggle {
@@ -108,18 +108,18 @@ pre code.hljs {
 
 .comment-border-g {
     border: none;
-    border-left: 2px solid #d9dde1;
+    border-left: 2px solid var(--mrr-color-85);
     margin: 0;
     height: 100%;
     width: 2px;
 }
 
 .comment-border:hover>.comment-border-g {
-    border-color: #565d62;
+    border-left-color: var(--mrr-color-80);
 }
 
 .comment-border:active>.comment-border-g {
-    border-color: #acb0b5;
+    border-left-color: var(--mrr-color-90);
 }
 
 .comment-border:hover {
@@ -132,7 +132,7 @@ pre code.hljs {
 }
 
 .comment-toggle:checked~.comment-main>.comment-meta {
-    color: #cdcdcd;
+    color: var(--mrr-color-75);
 }
 
 .comment-hidden::after {
@@ -144,16 +144,29 @@ pre code.hljs {
     content: '[unhide]';
 }
 
-hr {
+.preview-container hr {
     border: none;
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid var(--mrr-color);
 }
 
-a {
-    color: #1a0dab;
+.preview-container a {
     text-decoration: none;
 }
 
-a:hover {
+.preview-container a:hover {
     text-decoration: underline;
+}
+
+.preview-container blockquote {
+    border-left: 3px solid var(--mrr-color-20);
+    padding-left: 6px;
+    margin-left: 16px;
+    color: var(--mrr-color-0);
+}
+
+.reddit-title-link {
+    font-family: arial,sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 6px 0 -2px 0;
 }
