@@ -2,20 +2,18 @@
 
 This extension adds more types of rich results to Google. It currently supports Reddit and the Stack Exchange network (Stack Overflow, Super User, Server Fault, etc.)
 
-# Features
-
-## Added rich result types
+## ![Icon](/public/icon_106.png) New rich results
  - [x] Stack Exchange
  - [x] Reddit
  - [ ] Rotten Tomatoes
  - [ ] Quora
 
 ## Supported search engines
- - [x] Google support (w/ NoScript version)
- - [x] DuckDuckGo support (w/ NoScript version)
+ - [x] Google (w/ NoScript version)
+ - [x] DuckDuckGo (w/ NoScript version)
  - [ ] Searx
 
-# Screenshots
+## Screenshots
 
 ### Stack Exchange results
 
