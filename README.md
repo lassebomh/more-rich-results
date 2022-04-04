@@ -1,26 +1,18 @@
-# More Rich Results
+# More Rich Results <img src="/public/icon_106.png" width="24">
 
-This extension adds more types of rich results to Google. It currently supports Reddit and the Stack Exchange network (Stack Overflow, Super User, Server Fault, etc.)
+<img src="https://i.imgur.com/u8hI0wf.png" width="60%">
 
-## ![Icon](/public/icon_106.png) New rich results
- - [x] Stack Exchange
- - [x] Reddit
- - [ ] Rotten Tomatoes
- - [ ] Quora
+This extension adds more types of rich results to Google and other search engines. It currently supports Reddit and the Stack Exchange network (Stack Overflow, Super User, Server Fault, etc.)
 
-## Supported search engines
- - [x] Google (w/ NoScript version)
- - [x] DuckDuckGo (w/ NoScript version)
- - [ ] Searx
+#### Added rich results:
+ 1. Stack Exchange
+ 2. Reddit
 
-## Screenshots
+#### Supported search engines:
+ 1. Google (w/ NoScript version)
+ 2. DuckDuckGo (w/ NoScript version)
 
-### Stack Exchange results
-
-![Stack Exchange results](https://i.imgur.com/u8hI0wf.png)
-
-### Reddit results
-
-![Reddit results](https://i.imgur.com/MZjvbK4.png)
-
-Support might later be added for other search engines.
+#### Roadmap
+ - Searx support
+ - Rotten Tomatoes results
+ - Quora results
