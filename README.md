@@ -16,3 +16,4 @@ This extension adds more types of rich results to Google and other search engine
  - Searx support
  - Rotten Tomatoes results
  - Quora results
+ - Highlight answers from schema (q&a pages and faq pages)

@@ -39,6 +39,17 @@ pre code.hljs {
     z-index: 1;
 }
 
+.clickexpand-button {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.clickexpand-button:hover {
+    text-decoration: underline;
+}
+
 .preview-container {
     border-radius: 8px;
     color: var(--mrr-color-0);

@@ -23,34 +23,41 @@
                 "public/js/moment.min.js",
                 "public/js/highlight.min.js",
                 "public/js/highlightjs-copy.min.js",
-                "lib.js",
+                "lib/colorlib.js",
+                "lib/helper.js",
+                "lib/integrations.js",
                 "public/js/generate-theme.js"
             ],
-            "run_at": "document_end"
+            "run_at": "document_end",
+            "all_frames":true
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*" ],
             "js": [ "triggers/google.js" ],
-            "run_at": "document_end"
+            "run_at": "document_end",
+            "all_frames":true
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*gbv=1*" ],
             "css": [ "public/css/themes/google-noscript-theme.css" ],
-            "run_at": "document_start"
+            "run_at": "document_start",
+            "all_frames":true
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://html.duckduckgo.*/html?q=*", "*://html.duckduckgo.*/html/?q=*", "*://html.duckduckgo.*/html/" ],
             "js": [ "triggers/ddg-noscript.js" ],
-            "run_at": "document_end"
+            "run_at": "document_end",
+            "all_frames":true
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://duckduckgo.*/?q=*" ],
             "js": [ "triggers/ddg.js" ],
-            "run_at": "document_end"
+            "run_at": "document_end",
+            "all_frames":true
         }
     ],
     "background": {
