@@ -208,7 +208,7 @@ function findTriggerDomainMatches(urlstr) {
 
 function getPreviewGenerator(url) {
     let match = integrations.find((integration) => integration.match(url))
-    return (
+    return match && (
         async () => {
             this.type = match.type
 

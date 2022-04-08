@@ -3,20 +3,16 @@
     "description": "Add more types of rich results in search engines.",
     "version": "0.1",
     "permissions": [
-        "tabs"
-    ],
-    "host_permissions": [
+        "tabs",
         "<all_urls>"
-    ],      
+    ],
     "icons": {
         "128": "public/icon_106.png"
     },
-    "action": {
-        "default_icon": {
-          "106": "public/icon_106.png"
-        },
-        "default_title": "Settings",
-        "default_popup": "public/popup.html"
+    "browser_action": {
+        "default_icon": "public/icon_106.png",
+        "default_popup": "public/popup.html",
+        "default_title": "Settings"
     },
     "content_scripts": [
         {
@@ -65,11 +61,12 @@
         }
     ],
     "background": {
-        "service_worker": "background.js"
+        "scripts": [
+            "background.js"
+        ]
     },
-    "web_accessible_resources": [{
-        "resources": ["public/*"],
-        "matches": ["<all_urls>"]
-    }],
-    "manifest_version": 3
+    "web_accessible_resources": [
+        "public/*"
+    ],      
+    "manifest_version": 2
 }

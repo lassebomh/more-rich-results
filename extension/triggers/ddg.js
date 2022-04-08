@@ -17,7 +17,7 @@ setTimeout(() => {
         if (!link || !link.href) continue;
 
         let resultUrl = new URL(link.href)
-        let [type, generatePreview] = getPreviewGenerator(resultUrl)
+        let generatePreview = getPreviewGenerator(resultUrl)
 
         if (generatePreview !== undefined) {
             generatePreview().then((preview) => {
