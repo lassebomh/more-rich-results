@@ -35,10 +35,19 @@
             "run_at": "document_end",
             "all_frames":true
         },
+
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*" ],
             "js": [ "triggers/google.js" ],
+            "run_at": "document_end",
+            "all_frames":true
+        },
+        
+        {
+            "matches": [ "*://*/*" ],
+            "include_globs": [ "*://*.google.*/search*gbv=1*" ],
+            "js": [ "triggers/google-noscript.js" ],
             "run_at": "document_end",
             "all_frames":true
         },
@@ -49,9 +58,10 @@
             "run_at": "document_start",
             "all_frames":true
         },
+
         {
             "matches": [ "*://*/*" ],
-            "include_globs": [ "*://html.duckduckgo.*/html?q=*", "*://html.duckduckgo.*/html/?q=*", "*://html.duckduckgo.*/html/" ],
+            "include_globs": [ "*://html.duckduckgo.*/html*" ],
             "js": [ "triggers/ddg-noscript.js" ],
             "run_at": "document_end",
             "all_frames":true

@@ -1,4 +1,6 @@
 
+let INSIDE_IFRAME = window.parent[0] !== undefined
+
 HTMLElement.prototype.new = function (selector, innerHTML) {
     
     let tag = selector.match(/[\w-]+/)[0]
