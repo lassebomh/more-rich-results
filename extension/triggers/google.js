@@ -101,16 +101,16 @@ async function googleNoScriptPreviews() {
     document.body.insertBefore(mainWrapper, document.querySelector(".csi"))
 
     let richResults = mainWrapper.new(`div#rich-results`)
-    let urls = findGoogleNoScriptResultUrls()
     let preview;
+    let urls = findGoogleNoScriptResultUrls()
 
-    for (let i = 0; i < urls.length; i++) {
-        let url = urls[i]
+    let generatePreview = urls.map(url => getPreviewGenerator(url)).find(pg => pg != null);
 
-        let [type, generatePreview] = getPreviewGenerator(url)
+    if (generatePreview == null) {
+        // [type, generatePreview] = fetchGoogleResultUrls().map(url => getPreviewGenerator(url)).find(pg => pg[1] !== undefined);
+    }
 
-        if (generatePreview == undefined) continue
-
+    if (generatePreview != null) {
         preview = await generatePreview()
 
         let sheet = document.createElement('style')
@@ -122,8 +122,6 @@ async function googleNoScriptPreviews() {
         preview.shadowRoot.appendChild(sheet)
         
         richResults.appendChild(preview)
-        
-        break;
     }
 
     if (preview == null) {
@@ -138,7 +136,6 @@ async function googleNoScriptPreviews() {
         // console.log(r);
     }
 }
-
 
 async function googlePreviews() {
     let rhs = document.querySelector("#rhs")
