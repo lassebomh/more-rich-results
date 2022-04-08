@@ -1,5 +1,6 @@
 # More Rich Results <img src="extension/public/icon_106.png" width="24">
 
+<img src="https://i.imgur.com/kb5OE0n.gif" width="60%">
 <img src="https://i.imgur.com/u8hI0wf.png" width="60%">
 
 This extension adds more types of rich results to Google and other search engines.
@@ -18,7 +19,8 @@ This extension adds more types of rich results to Google and other search engine
 
 #### Planned features:
  - Searx support
- - Rotten Tomatoes results
- - Quora results
+ - MDN Docs
  - GitHub repos & issues
  - Better schema highlighting (q&a pages and faq pages)
+ - Rotten Tomatoes results
+ - Quora results
