@@ -37,18 +37,28 @@ let integrations = [
             // let postBody = root.new(`div.clickexpand[style='color: #444']`, stackdata.body)
             // postBody.addEventListener("click", (e) => e.target.setAttribute("show", ""))
 
-            let answers = stackdata.answers.sort((a,b) => b.score - a.score);
+            if (!!stackdata.answers) {
+                let answers = stackdata.answers.sort((a,b) => b.score - a.score);
+                let topanswer = answers[0]
+                let answerBody = root.new(`div`, topanswer.body)
+                
+                if (stackdata.answers.length > 1) {
+                    let moreLink = root.new(`a`, "All replies...")
+                    moreLink.href = url.href
+                    moreLink.style.fontSize = "16px"
+                    moreLink.style.textAlign = "center"
+                    moreLink.style.display = "block"
+                    moreLink.style.marginTop = "1em";
+                }
+            } else {
+                let alert = root.new(`p`, "No solutions")
+                alert.style.fontSize = "16px"
+                alert.style.textAlign = "center"
+                alert.style.display = "block"
+                alert.style.marginTop = "1em";
+            }
 
-            let topanswer = answers[0]
 
-            let answerBody = root.new(`div`, topanswer.body)
-
-            let moreLink = root.new(`a`, "All replies...")
-            moreLink.href = url.href
-            moreLink.style.fontSize = "16px"
-            moreLink.style.textAlign = "center"
-            moreLink.style.display = "block"
-            moreLink.style.marginTop = "1em";
 
         }
     },

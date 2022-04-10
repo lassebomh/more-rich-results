@@ -3,7 +3,8 @@ function findDuckDuckGoResultUrls() {
     let resultsContainer = document.getElementById('links')
     
     return new Promise((resolve, reject) => {
-        observer = new MutationObserver((mutationsList, observer) => {
+        
+        let getURLs = () => {
             let urls = []
             let results = Array.from(document.querySelectorAll(".result")).filter(g => !g.querySelector(".result"))
         
@@ -14,10 +15,19 @@ function findDuckDuckGoResultUrls() {
         
                 urls.push(new URL(link.href))
             }
-            
-            resolve(urls)
+            return urls;
+        }
+    
+        let observer = new MutationObserver((mutationsList, observer) => {
+            resolve(getURLs())
+            clearTimeout(timer);
             observer.disconnect();
         });
+
+        let timer = setTimeout(() => {
+            resolve(getURLs())
+            observer.disconnect();
+        }, 3000)
 
         observer.observe(resultsContainer, { childList: true });
     })
