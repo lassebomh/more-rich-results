@@ -1,11 +1,11 @@
-# More Rich Results <img src="extension/public/icon_106.png" width="24">
+# Search Result Previews <img src="extension/public/icon_256.png" width="24">
 
 <img src="https://i.imgur.com/kb5OE0n.gif" width="60%">
 <img src="https://i.imgur.com/u8hI0wf.png" width="60%">
 
-This extension adds more types of rich results to Google and other search engines.
+This extension adds more types of search previews to Google and other search engines.
 
-#### New rich results:
+#### New search previews:
  1. Stack Exchange (Stack Overflow, Server Fault, Super User, Ask Ubuntu and so on...)
  2. Reddit
 

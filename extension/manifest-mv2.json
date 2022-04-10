@@ -1,16 +1,16 @@
 {
-    "name": "More Rich Results",
-    "description": "Add more types of rich results in search engines.",
+    "name": "Search Result Previews",
+    "description": "Add more types of search previews in search engines.",
     "version": "0.1",
     "permissions": [
         "tabs",
         "<all_urls>"
     ],
     "icons": {
-        "128": "public/icon_106.png"
+        "128": "public/icon_256.png"
     },
     "browser_action": {
-        "default_icon": "public/icon_106.png",
+        "default_icon": "public/icon_256.png",
         "default_popup": "public/popup.html",
         "default_title": "Settings"
     },
