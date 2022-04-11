@@ -12,13 +12,13 @@ function midVec(hsl1, hsl0, frac) {
     ]
 }
 
-let bgColor = parseColor(getComputedStyle(htmlRoot)["background-color"])
+let bgColor = parseColor(getComputedStyle(htmlRoot)["background-color"]).splice(0, 3)
 
 if (bgColor.every(item => item === 0)) {
-    bgColor = getComputedStyle(document.body)["background-color"]
+    bgColor = parseColor(getComputedStyle(document.body)["background-color"]).splice(0, 3)
 
     if (bgColor.every(item => item === 0)) {
-        bgColor = "rgb(255, 255, 255)"
+        bgColor = [255, 255, 255]
     }
 }
 
