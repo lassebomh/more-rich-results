@@ -33,20 +33,22 @@ function findDuckDuckGoResultUrls() {
     })
 }
 
-// Remove builtin Stackoverflow preview
-Array.from(document.querySelectorAll(".js-sidebar-modules")).forEach((e) => {
-    e.parentNode.removeChild(e);
-})
-
 let resultsSidebar = document.querySelector(".results--sidebar")
 resultsSidebar.style.maxWidth = "560px";
 resultsSidebar.style.marginLeft = "calc(var(--max-content-width) + 12px)";
 
 (async () => {
 
+    // Remove builtin Stackoverflow preview
+    if (await getSetting("ddg_remove_builtin_previews")) {
+        Array.from(document.querySelectorAll(".js-sidebar-modules")).forEach((e) => {
+            e.parentNode.removeChild(e);
+        })
+    }
+
     let urls = await findDuckDuckGoResultUrls()
 
-    let generatePreview = await urls.mapAsync(async url => await getPreviewGenerator(url)).find(pg => pg != null);
+    let generatePreview = (await urls.mapAsync(async url => await getPreviewGenerator(url))).find(pg => pg != null);
 
     if (generatePreview !== undefined) {
         

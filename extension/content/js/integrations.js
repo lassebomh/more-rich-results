@@ -1,4 +1,6 @@
 
+chrome.storage.sync.get(null, console.log);
+
 const REDDIT_MAX_REPLY_DEPTH = 6
 const REDDIT_MAX_REPLY_COUNT = 3
 
@@ -78,9 +80,6 @@ let integrations = [
                     resolve(response);
                 });
             }));
-
-            console.log(post);
-            console.log(requestUrl);
 
             let postData = post[0].data.children[0].data
             postData = postData.crosspost_parent_list !== undefined ? postData.crosspost_parent_list[0] : postData
@@ -217,6 +216,8 @@ function findTriggerDomainMatches(urlstr) {
 }
 
 async function getPreviewGenerator(url) {
+    // console.log(await integrations.mapAsync(async (integration) => [integration.id, await getSetting(integration.id)]));
+
     let match = await integrations.findAsync(async (integration) => await getSetting(integration.id) && integration.match(url))
     return match && (
         async () => {
@@ -230,9 +231,9 @@ async function getPreviewGenerator(url) {
             root.style.opacity = "0";
             root.classList.add('preview-container')
 
-            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/css/github.css");
-            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/css/highlightjs-copy.css");
-            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("public/css/preview.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("content/css/github.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("content/css/highlightjs-copy.css");
+            root.new(`link[type="text/css"][rel="stylesheet"]`).href = chrome.runtime.getURL("content/css/preview.css");
 
             shadowRoot.appendChild(root)
 

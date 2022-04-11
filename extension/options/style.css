@@ -1,0 +1,146 @@
+
+body {
+    width: 100%;
+    min-width: 260px;
+    /* height: 320px; */
+    font-family: 'Poppins';
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-size: 12px;
+    background-color: #008ddf;
+    color: white;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+}
+
+tr * {
+    text-align: left;
+}
+
+tr :nth-child(2) {
+    width: 21px;
+}
+
+tr td:first-child {
+    padding-left: 6px;
+                
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+tr td:first-child span {
+    margin-left: -6px;
+}
+
+.category {
+    text-transform: uppercase;
+    font-family: 'Poppins';
+    font-weight: 600;
+    opacity: 60%;
+    padding-left: 3px;
+}
+
+section {
+    margin: 8px;
+}
+
+.checkbox-symbol {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.checkbox-container {
+    box-sizing: border-box;
+    background: #ffffff;
+    color: #222;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.checkbox-container * {
+    box-sizing: border-box;
+}
+
+.checkbox-input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.checkbox {
+    user-select: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+}
+
+.checkbox:not(:last-child) {
+    margin-right: 6px;
+}
+
+.checkbox:hover {
+    background: rgba(0, 119, 255, 0.06);
+}
+
+.checkbox span {
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox span:first-child {
+    position: relative;
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    transform: scale(1);
+    border: 1px solid #ffffff;
+    transition: all 0.3s ease;
+}
+
+.checkbox span:first-child svg {
+    position: absolute;
+    top: 2px;
+    left: 0.7px;
+    fill: none;
+    stroke: #008ddf;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox span:last-child {
+    padding-left: 8px;
+    line-height: 18px;
+    display: none;
+}   
+
+.checkbox:hover span:first-child {
+    border-color: rgb(208, 230, 255);
+}
+
+.checkbox-input:checked + .checkbox span:first-child {
+    background: #fff;
+    /* border-color: #0077ff; */
+    animation: zoom-in-out 0.3s ease;
+}
+
+.checkbox-input:checked + .checkbox span:first-child svg {
+    stroke-dashoffset: 0;
+}
+
+@keyframes zoom-in-out {
+    50% {
+        transform: scale(0.9);
+    }
+}

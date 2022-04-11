@@ -10,28 +10,39 @@
         "<all_urls>"
     ],      
     "icons": {
-        "128": "public/icon_256.png"
+        "16": "icon_16.png",
+        "32": "icon_32.png",
+        "64": "icon_64.png",
+        "256": "icon_256.png"
     },
     "action": {
         "default_icon": {
-          "256": "public/icon_256.png"
+            "16": "icon_16.png",
+            "32": "icon_32.png",
+            "64": "icon_64.png",
+            "256": "icon_256.png"
         },
         "default_title": "Settings",
-        "default_popup": "public/popup.html"
+        "default_popup": "options/index.html"
     },
+    "options_ui": {
+        "page": "options/index.html",
+        "open_in_tab": false
+    },    
     "content_scripts": [
         {
             "matches": [
                 "<all_urls>"
             ],
             "js": [
-                "public/js/moment.min.js",
-                "public/js/highlight.min.js",
-                "public/js/highlightjs-copy.min.js",
-                "lib/colorlib.js",
-                "lib/helper.js",
-                "lib/integrations.js",
-                "public/js/generate-theme.js"
+                "content/js/moment.min.js",
+                "content/js/highlight.min.js",
+                "content/js/highlightjs-copy.min.js",
+                "content/js/colorlib.js",
+                "content/js/dom-helper.js",
+                "content/js/helper.js",
+                "content/js/integrations.js",
+                "content/js/generate-theme.js"
             ],
             "run_at": "document_end",
             "all_frames":true
@@ -55,7 +66,7 @@
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*gbv=1*" ],
-            "css": [ "public/css/themes/google-noscript-theme.css" ],
+            "css": [ "content/css/themes/google-noscript-theme.css" ],
             "run_at": "document_start",
             "all_frames":true
         },
@@ -79,7 +90,7 @@
         "service_worker": "background.js"
     },
     "web_accessible_resources": [{
-        "resources": ["public/*"],
+        "resources": ["content/*", "icon_256.png"],
         "matches": ["<all_urls>"]
     }],
     "manifest_version": 3

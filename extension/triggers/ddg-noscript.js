@@ -1,7 +1,6 @@
 
 // Make all links avoid bounce
 document.querySelectorAll("a").forEach(e => {
-    console.log(e.href);
     if (!!e.href) {
         href = new URL(e.href)
         if (href.pathname === "/l/") {
