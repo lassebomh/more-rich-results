@@ -1,4 +1,16 @@
 
+function findDDGNSResultUrls() {
+    let urls = []
+    let results = Array.from(document.querySelectorAll(".result")).filter(g => !g.querySelector(".result"))
+
+    for (let i = 0; i < results.length; i++) {
+        let link = results[i].querySelector("a");
+        if (!link || !link.href) continue;
+        urls.push(new URL(link.href))
+    }
+    return urls;
+}
+
 // Make all links avoid bounce
 document.querySelectorAll("a").forEach(e => {
     if (!!e.href) {
@@ -12,33 +24,15 @@ document.querySelectorAll("a").forEach(e => {
 let main = document.querySelector("#header + div")
 main.style.display = "flex";
 
-let sidebar = main.new(`div`)
-sidebar.style.width = "100%"
-sidebar.style.maxWidth = "672px"
-sidebar.style.marginTop = "30px"
-sidebar.style.marginLeft = "24px"
+let sidebar = main.new(`div`);
+sidebar.style.width = "100%";
+sidebar.style.maxWidth = "672px";
+sidebar.style.marginTop = "30px";
+sidebar.style.marginLeft = "24px";
 
-setTimeout(async () => {
-        
-    let results = Array.from(document.querySelectorAll(".result")).filter(g => !g.querySelector(".result"))
+let urls = findDDGNSResultUrls()
 
-    for (let i = 0; i < results.length; i++) {
-        let link = results[i].querySelector("a");
+newValidPreview(urls, ``).then((preview) => {
+    sidebar.appendChild(preview)
+})
 
-        if (!link || !link.href) continue;
-
-        let resultUrl = new URL(link.href)
-        let generatePreview = await getPreviewGenerator(resultUrl)
-
-        if (generatePreview !== undefined) {
-            generatePreview().then((preview) => {
-                let ddgSheet = document.createElement('style')
-                ddgSheet.innerHTML = ``
-                preview.shadowRoot.appendChild(ddgSheet)
-                
-                sidebar.appendChild(preview)
-            })
-            break;
-        }
-    }
-}, 800)

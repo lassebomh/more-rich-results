@@ -41,42 +41,27 @@ async function googlePreviews() {
     let rhs = document.querySelector("#rhs")
     let rcnt = document.querySelector("#rcnt")
     
-    if (rcnt != null) {
-    
-        if (rhs === null) {
-            rhs = document.createElement("div")
-            rhs.id = "rhs"
-            rcnt.appendChild(rhs)
-        }
+    if (rcnt == null) return
 
-        rhs.style.marginLeft = "2em"
-        rhs.style.width = "652px"
-        rcnt.style.flexWrap = "initial"
-        rcnt.style.maxWidth = "initial"
-    
-        let urls = findGoogleResultUrls();
-
-        let previewGenerators = await urls.mapAsync(async url => await getPreviewGenerator(url));
-
-        let generatePreview = previewGenerators.find(pg => pg != null);
-
-        if (generatePreview == null) {
-            
-            // [type, generatePreview] = fetchGoogleResultUrls().map(url => getPreviewGenerator(url)).find(pg => pg[1] !== undefined);
-        }
-
-        if (generatePreview !== undefined) {
-            let preview = await generatePreview()
-            let sheet = document.createElement('style')
-            sheet.innerHTML = `
-                .preview-container a {
-                    color: #1a0dab;
-                }
-            `
-            preview.shadowRoot.appendChild(sheet)
-            rhs.appendChild(preview)
-        }
+    if (rhs === null) {
+        rhs = document.createElement("div")
+        rhs.id = "rhs"
+        rcnt.appendChild(rhs)
     }
+
+    rhs.style.marginLeft = "2em"
+    rhs.style.width = "652px"
+    rcnt.style.flexWrap = "initial"
+    rcnt.style.maxWidth = "initial"
+
+    let urls = findGoogleResultUrls();
+    let preview = await newValidPreview(urls, `
+        .preview-container a {
+            color: #1a0dab;
+        }
+    `)
+
+    rhs.appendChild(preview)
 }
 
 if (INSIDE_IFRAME) {

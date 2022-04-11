@@ -47,25 +47,16 @@ resultsSidebar.style.marginLeft = "calc(var(--max-content-width) + 12px)";
     }
 
     let urls = await findDuckDuckGoResultUrls()
+    let preview = await newValidPreview(urls, `
+        a {
+            color: var(--mrr-color-0);
+            font-weight: 600;
+        }
 
-    let generatePreview = (await urls.mapAsync(async url => await getPreviewGenerator(url))).find(pg => pg != null);
-
-    if (generatePreview !== undefined) {
-        
-        let preview = await generatePreview()
-        let sheet = document.createElement('style')
-        sheet.innerHTML = `
-            a {
-                color: var(--mrr-color-0);
-                font-weight: 600;
-            }
-
-            .preview-container {
-                font-family: "DDG_ProximaNova", "DDG_ProximaNova_UI_0", "DDG_ProximaNova_UI_1", "DDG_ProximaNova_UI_2", "DDG_ProximaNova_UI_3", "DDG_ProximaNova_UI_4", "DDG_ProximaNova_UI_5", "DDG_ProximaNova_UI_6", "Proxima Nova", "Helvetica Neue", "Helvetica", "Segoe UI", "Nimbus Sans L", "Liberation Sans", "Open Sans",FreeSans,Arial,sans-serif;
-            }
-        `
-        preview.shadowRoot.appendChild(sheet)
-        resultsSidebar.appendChild(preview)
-    }
+        .preview-container {
+            font-family: "DDG_ProximaNova", "DDG_ProximaNova_UI_0", "DDG_ProximaNova_UI_1", "DDG_ProximaNova_UI_2", "DDG_ProximaNova_UI_3", "DDG_ProximaNova_UI_4", "DDG_ProximaNova_UI_5", "DDG_ProximaNova_UI_6", "Proxima Nova", "Helvetica Neue", "Helvetica", "Segoe UI", "Nimbus Sans L", "Liberation Sans", "Open Sans",FreeSans,Arial,sans-serif;
+        }
+    `)
+    resultsSidebar.appendChild(preview)
 
 })()
