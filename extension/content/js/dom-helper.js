@@ -1,5 +1,11 @@
 
-let INSIDE_IFRAME = window.parent[0] !== undefined
+let INSIDE_IFRAME
+
+try {
+    INSIDE_IFRAME = window.self !== window.top;
+} catch (e) {
+    INSIDE_IFRAME = true;
+}
 
 HTMLElement.prototype.new = function (selector, innerHTML) {
     
@@ -29,4 +35,24 @@ HTMLElement.prototype.new = function (selector, innerHTML) {
     this.appendChild(element)
 
     return element;
+}
+
+function fetchGoogleResultUrls(query, js_enabled) {
+    if (js_enabled == null) js_enabled = true
+
+    return new Promise((resolve, reject) => {
+        let msgListener = (event) => {
+            let msg = event.data
+            if (msg.type === "resulturls") {
+                window.removeEventListener("message", msgListener)
+                resolve(msg.urls)
+            };
+        }
+
+        window.addEventListener("message", msgListener, false);
+        
+        iframe = document.body.new("iframe")
+        iframe.src = "https://google.com/search?q="+encodeURI(query) + (!js_enabled ? "&gbv=1" : "")
+        // iframe.style.display = "none"
+    })
 }

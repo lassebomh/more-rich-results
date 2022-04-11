@@ -16,27 +16,6 @@ function findGoogleResultUrls() {
     return urls
 }
 
-function fetchGoogleResultUrls(query, js_enabled) {
-    if (js_enabled == null) js_enabled = true
-
-    return new Promise((resolve, reject) => {
-        let msgListener = (event) => {
-            let msg = event.data
-            if (msg.type === "resulturls") {
-                window.removeEventListener("message", msgListener)
-                resolve(msg.urls)
-            };
-        }
-
-        window.addEventListener("message", msgListener, false);
-        
-        iframe = document.body.new("iframe")
-        iframe.src = "https://google.com/search?q="+encodeURI(query) + !js_enabled ? "&gbv=1" : ""
-        iframe.style.display = "none"
-    })
-}
-
-
 async function googlePreviews() {
     let rhs = document.querySelector("#rhs")
     let rcnt = document.querySelector("#rcnt")
@@ -61,7 +40,7 @@ async function googlePreviews() {
         }
     `)
 
-    rhs.appendChild(preview)
+    if (preview != null) rhs.appendChild(preview)
 }
 
 if (INSIDE_IFRAME) {

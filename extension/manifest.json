@@ -87,7 +87,7 @@
         }
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background/sw.js"
     },
     "web_accessible_resources": [{
         "resources": ["content/*", "icon_256.png"],

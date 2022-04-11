@@ -53,11 +53,12 @@ async function googleNoScriptPreviews() {
     if ( (new URL(window.location).searchParams.get("tbm")) !== null ) return 
     
     document.body.style.maxWidth = "100%"
+    let main = document.querySelector("#main")
     let mainWrapper = document.createElement("div")
     mainWrapper.id = "main-wrapper"
-    let main = document.querySelector("#main")
     mainWrapper.append(main);
     main.insertBefore(document.querySelector("#hdr"), main.firstChild);
+
     document.body.insertBefore(mainWrapper, document.querySelector(".csi"))
     let richResults = mainWrapper.new(`div#rich-results`)
 
@@ -68,9 +69,8 @@ async function googleNoScriptPreviews() {
             color: #1a0dab;
         }
     `)
-    
-    richResults.appendChild(preview)
 
+    if (preview) richResults.appendChild(preview)
 
     // if (preview == null) {
 

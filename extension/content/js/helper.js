@@ -59,3 +59,27 @@ function setSetting(key, value) {
         chrome.storage.sync.set({[key]: value}, resolve);
     })
 }
+
+async function fetchJson(href) {
+    return new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage({ type: "fetch-json", url: href }, (response) => {
+            resolve(response);
+        });
+    });
+}
+
+async function fetchText(href) {
+    return new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage({ type: "fetch-text", url: href }, (response) => {
+            resolve(response);
+        });
+    });
+}
+
+async function fetchWikidataEntities(property, claim) {
+    return new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage({ type: "wikidata-entities", property, claim }, (response) => {
+            resolve(response);
+        });
+    });
+}

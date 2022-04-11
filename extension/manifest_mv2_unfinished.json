@@ -68,7 +68,7 @@
     ],
     "background": {
         "scripts": [
-            "background.js"
+            "background/sw.js"
         ]
     },
     "web_accessible_resources": [
