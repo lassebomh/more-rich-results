@@ -31,6 +31,19 @@ HTMLElement.prototype.new = function (selector, innerHTML) {
     return element;
 }
 
+Array.prototype.findAsync = async function (asyncCallback) {
+    const promises = this.map(asyncCallback);
+    const results = await Promise.all(promises);
+    const index = results.findIndex(result => result);
+    return this[index];
+}
+
+Array.prototype.mapAsync = async function (asyncCallback) {
+    const promises = this.map(asyncCallback);
+    const results = await Promise.all(promises);
+    return results;
+}
+
 var ranges = [
     { divider: 1e18, suffix: 'E' },
     { divider: 1e15, suffix: 'P' },
@@ -62,4 +75,12 @@ function makeid() {
 
 function delWWW(hostname) {
     return hostname.startsWith("www.") ? hostname.substring(4) : hostname
+}
+
+function getSetting(key) {
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get([key], function(result) {
+            resolve(result[key])
+        });
+    })
 }

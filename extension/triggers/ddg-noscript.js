@@ -19,7 +19,7 @@ sidebar.style.maxWidth = "672px"
 sidebar.style.marginTop = "30px"
 sidebar.style.marginLeft = "24px"
 
-setTimeout(() => {
+setTimeout(async () => {
         
     let results = Array.from(document.querySelectorAll(".result")).filter(g => !g.querySelector(".result"))
 
@@ -29,7 +29,7 @@ setTimeout(() => {
         if (!link || !link.href) continue;
 
         let resultUrl = new URL(link.href)
-        let generatePreview = getPreviewGenerator(resultUrl)
+        let generatePreview = await getPreviewGenerator(resultUrl)
 
         if (generatePreview !== undefined) {
             generatePreview().then((preview) => {

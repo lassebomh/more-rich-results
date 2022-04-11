@@ -53,7 +53,7 @@ async function googleNoScriptPreviews() {
     let richResults = mainWrapper.new(`div#rich-results`)
     let urls = findGoogleNoScriptResultUrls()
 
-    let generatePreview = urls.map(url => getPreviewGenerator(url)).find(pg => pg != null);
+    let generatePreview = await urls.mapAsync(async url => await getPreviewGenerator(url)).find(pg => pg != null);
 
     if (generatePreview == null) {
         // [type, generatePreview] = fetchGoogleResultUrls().map(url => getPreviewGenerator(url)).find(pg => pg[1] !== undefined);

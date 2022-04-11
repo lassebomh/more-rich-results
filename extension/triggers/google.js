@@ -54,9 +54,9 @@ async function googlePreviews() {
         rcnt.style.flexWrap = "initial"
         rcnt.style.maxWidth = "initial"
     
-        let urls = findGoogleResultUrls()
+        let urls = findGoogleResultUrls();
 
-        let previewGenerators = urls.map(url => getPreviewGenerator(url))
+        let previewGenerators = await urls.mapAsync(async url => await getPreviewGenerator(url));
 
         let generatePreview = previewGenerators.find(pg => pg != null);
 

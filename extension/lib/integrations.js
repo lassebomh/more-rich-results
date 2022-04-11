@@ -8,7 +8,7 @@ hljs.addPlugin(new CopyButtonPlugin());
 
 let integrations = [
     {
-        "type":"stackexchange",
+        "id":"stackexchange",
         "match": (url) => stackexchangeSites.indexOf(url.hostname) !== -1 && (url.pathname.startsWith("/questions/") || url.pathname.startsWith("/q/")),
         "preview": async (url, root) => {
 
@@ -63,7 +63,7 @@ let integrations = [
         }
     },
     {
-        "type":"reddit",
+        "id":"reddit",
         "match": (url) => url.hostname === "www.reddit.com" && /^\/r\/[\w_-]+\/comments\/[\w_-]+\/[\w_-]+\//.test(url.pathname),
         "preview": async (url, root) => {
             let requestUrl = url.href
@@ -216,11 +216,11 @@ function findTriggerDomainMatches(urlstr) {
     let url = new URL(urlstr)
 }
 
-function getPreviewGenerator(url) {
-    let match = integrations.find((integration) => integration.match(url))
+async function getPreviewGenerator(url) {
+    let match = await integrations.findAsync(async (integration) => await getSetting(integration.id) && integration.match(url))
     return match && (
         async () => {
-            this.type = match.type
+            this.id = match.id
 
             let rootContainer = document.createElement("div")
             let shadowRoot = rootContainer.attachShadow({ "mode": "open" })

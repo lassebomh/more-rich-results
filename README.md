@@ -1,4 +1,4 @@
-# Search Result Previews <img src="extension/public/icon_256.png" width="24">
+# More Search Previews <img src="extension/public/icon_256.png" width="24">
 
 <img src="https://i.imgur.com/kb5OE0n.gif" width="60%">
 <img src="https://i.imgur.com/u8hI0wf.png" width="60%">

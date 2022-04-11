@@ -46,7 +46,7 @@ resultsSidebar.style.marginLeft = "calc(var(--max-content-width) + 12px)";
 
     let urls = await findDuckDuckGoResultUrls()
 
-    let generatePreview = urls.map(url => getPreviewGenerator(url)).find(pg => pg != null);
+    let generatePreview = await urls.mapAsync(async url => await getPreviewGenerator(url)).find(pg => pg != null);
 
     if (generatePreview !== undefined) {
         
