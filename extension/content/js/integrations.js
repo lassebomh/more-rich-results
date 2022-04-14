@@ -293,7 +293,6 @@ async function newValidPreview(urls, theme) {
             let sheet = document.createElement('style')
             sheet.innerHTML = theme
             preview.shadowRoot.appendChild(sheet)
-            console.log("Preview match");
             return preview
         }
     }

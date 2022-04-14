@@ -4,7 +4,6 @@ class GNSTrigger extends SETrigger {
         
         document.querySelectorAll("a").forEach(e => {
             let h = e.getAttribute('href')
-            console.log(h, e);
             if (!!h) {
                 let url = new URL(h, h.startsWith('/') ? window.location : undefined)
                 if (url.pathname === "/url") {

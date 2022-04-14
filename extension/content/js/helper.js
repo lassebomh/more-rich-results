@@ -54,7 +54,6 @@ function getSetting(key) {
 }
 
 function setSetting(key, value) {
-    console.log(`set ${key} to ${value}`);
     return new Promise((resolve, reject) => {
         chrome.storage.sync.set({[key]: value}, resolve);
     })
@@ -169,10 +168,8 @@ class SETrigger {
             let previewTheme = await this.getPreviewTheme()
 
             let preview = await newValidPreview(urls, previewTheme)
-            console.log(preview);
 
             if (preview == null) {
-                console.log("Looking for trigger urls");
                 urls = await this.getTriggeredResultUrls(urls)
                 preview = await newValidPreview(urls, previewTheme)
             }

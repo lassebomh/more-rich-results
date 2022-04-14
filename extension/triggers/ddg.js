@@ -61,7 +61,6 @@ class DDGTrigger extends SETrigger {
             }
         
             let observer = new MutationObserver((mutationsList, observer) => {
-                console.log("results loaded");
                 resolve(getURLs())
                 clearTimeout(timer);
                 observer.disconnect();
