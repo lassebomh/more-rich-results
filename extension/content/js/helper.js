@@ -83,3 +83,103 @@ async function fetchWikidataEntities(property, claim) {
         });
     });
 }
+
+function callbackChildChange(element, callback, timeout) {
+    let observer = new MutationObserver((mutationsList, observer) => {
+        console.log(mutationsList)
+        // resolve(true)
+        // observer.disconnect();
+    });
+
+    let timer = (typeof timeout === "number") && setTimeout(() => {
+        console.log("stopped");
+        observer.disconnect();
+    }, timeout)
+
+    observer.observe(element, { childList: true });
+}
+
+class SETrigger {
+    async setupContainer () {}
+    
+    async getPreviewTheme () {}
+
+    getResultUrls () {}
+
+    addDomainFilter (domain) {
+        let loc = new URL(window.location)
+        let sq = loc.searchParams.get("q").split(" ").filter(s => !s.startsWith("site:")).join(" ")
+
+        loc.searchParams.set("q", sq + " site:" + domain)
+
+        return loc.href
+    }
+
+    async getDomainFilteredResultUrls(domain) {
+        
+        return new Promise((resolve, reject) => {
+            let msgListener = (event) => {
+                let msg = event.data
+                if (msg.type === "resulturls") {
+                    window.removeEventListener("message", msgListener)
+                    resolve(msg.urls.map(u => new URL(u)))
+                };
+            }
+
+            window.addEventListener("message", msgListener, false);
+            
+            let iframe = document.body.new("iframe")
+            iframe.src = this.addDomainFilter(domain)
+            iframe.style.display = "none"
+        })
+    }
+
+    async getTriggeredResultUrls(urls) {
+        let resultsDomainSet = new Set(urls.map(u => delWWW(u.hostname)))
+
+        for (let i = 0; i < integrations.length; i++) {
+            let integration = integrations[i];
+            let triggers = integration.triggers;
+            let triggerKeys = Object.keys(triggers)
+
+            for (let x = 0; x < triggerKeys.length; x++) {
+                const key = triggerKeys[x];
+                if (triggers[key].some((e) => resultsDomainSet.has(delWWW(e)))) {
+                    return await this.getDomainFilteredResultUrls(key)
+                }
+            }
+        }
+
+        return []
+    }
+
+    async run() {
+        let container = await this.setupContainer()
+        let urls = await this.getResultUrls()
+
+        if (urls.length == 0) return
+
+        if (INSIDE_IFRAME) {
+            window.top.postMessage({
+                "urls": urls.map(u => u.href),
+                "type": "resulturls"
+            })
+
+        } else {
+            let previewTheme = await this.getPreviewTheme()
+
+            let preview = await newValidPreview(urls, previewTheme)
+            console.log(preview);
+
+            if (preview == null) {
+                console.log("Looking for trigger urls");
+                urls = await this.getTriggeredResultUrls(urls)
+                preview = await newValidPreview(urls, previewTheme)
+            }
+            
+            if (preview != null) {
+                container.prepend(preview)
+            }
+        }
+    }
+}

@@ -1,38 +1,45 @@
+class DDGNSTrigger extends SETrigger {
+    async setupContainer () {
+        // Make all links avoid bounce
+        document.querySelectorAll("a").forEach(e => {
+            let h = e.getAttribute('href')
+            if (!!h) {
+                let url = new URL(h, h.startsWith('/') ? window.location : null)
+                if (url.pathname === "/l/") {
+                    e.setAttribute('href', url.searchParams.get('uddg'))
+                }
+            }
+        })
 
-function findDDGNSResultUrls() {
-    let urls = []
-    let results = Array.from(document.querySelectorAll(".result")).filter(g => !g.querySelector(".result"))
+        let main = document.querySelector("#header + div")
+        main.style.display = "flex";
 
-    for (let i = 0; i < results.length; i++) {
-        let link = results[i].querySelector("a");
-        if (!link || !link.href) continue;
-        urls.push(new URL(link.href))
+        let sidebar = main.new(`div`);
+        sidebar.style.width = "100%";
+        sidebar.style.maxWidth = "672px";
+        sidebar.style.marginTop = "30px";
+        sidebar.style.marginLeft = "24px";
+
+        return sidebar
     }
-    return urls;
+
+    async getPreviewTheme () {
+        return ``
+    }
+
+    getResultUrls () {
+        let urls = []
+        let results = Array.from(document.querySelectorAll(".result")).filter(g => !g.querySelector(".result"))
+    
+        for (let i = 0; i < results.length; i++) {
+            let link = results[i].querySelector("a");
+            if (!link || !link.href) continue;
+            urls.push(new URL(link.href))
+        }
+        return urls;
+    }
 }
 
-// Make all links avoid bounce
-document.querySelectorAll("a").forEach(e => {
-    if (!!e.href) {
-        href = new URL(e.href)
-        if (href.pathname === "/l/") {
-            e.href = href.searchParams.get('uddg')
-        }
-    }
-})
+let ddgns = new DDGNSTrigger()
 
-let main = document.querySelector("#header + div")
-main.style.display = "flex";
-
-let sidebar = main.new(`div`);
-sidebar.style.width = "100%";
-sidebar.style.maxWidth = "672px";
-sidebar.style.marginTop = "30px";
-sidebar.style.marginLeft = "24px";
-
-let urls = findDDGNSResultUrls()
-
-newValidPreview(urls, ``).then((preview) => {
-    sidebar.appendChild(preview)
-})
-
+ddgns.run()

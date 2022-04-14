@@ -9,15 +9,15 @@
         "storage"
     ],
     "icons": {
-        "16": "icon_16.png",
-        "32": "icon_32.png",
-        "64": "icon_64.png",
-        "256": "icon_256.png"
+        "16": "../icon_16.png",
+        "32": "../icon_32.png",
+        "64": "../icon_64.png",
+        "256": "../icon_256.png"
     },
     "browser_action": {
-        "default_icon": "icon_256.png",
-        "default_options": "options/index.html",
-        "default_title": "Settings"
+        "default_icon": "../icon_256.png",
+        "default_popup": "../options/index.html",
+        "default_title": "More Rich Resuls"
     },
     "content_scripts": [
         {
@@ -25,14 +25,14 @@
                 "<all_urls>"
             ],
             "js": [
-                "content/js/moment.min.js",
-                "content/js/highlight.min.js",
-                "content/js/highlightjs-copy.min.js",
-                "content/js/colorlib.js",
-                "content/js/dom-helper.js",
-                "content/js/helper.js",
-                "content/js/integrations.js",
-                "content/js/generate-theme.js"
+                "../content/js/moment.min.js",
+                "../content/js/highlight.min.js",
+                "../content/js/highlightjs-copy.min.js",
+                "../content/js/colorlib.js",
+                "../content/js/dom-helper.js",
+                "../content/js/helper.js",
+                "../content/js/integrations.js",
+                "../content/js/generate-theme.js"
             ],
             "run_at": "document_end",
             "all_frames":true
@@ -40,38 +40,38 @@
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*" ],
-            "js": [ "triggers/google.js" ],
+            "js": [ "../triggers/google.js" ],
             "run_at": "document_end",
             "all_frames":true
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://*.google.*/search*gbv=1*" ],
-            "css": [ "content/css/themes/google-noscript-theme.css" ],
+            "css": [ "../content/css/themes/google-noscript-theme.css" ],
             "run_at": "document_start",
             "all_frames":true
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://html.duckduckgo.*/html?q=*", "*://html.duckduckgo.*/html/?q=*", "*://html.duckduckgo.*/html/" ],
-            "js": [ "triggers/ddg-noscript.js" ],
+            "js": [ "../triggers/ddg-noscript.js" ],
             "run_at": "document_end",
             "all_frames":true
         },
         {
             "matches": [ "*://*/*" ],
             "include_globs": [ "*://duckduckgo.*/?q=*" ],
-            "js": [ "triggers/ddg.js" ],
+            "js": [ "../triggers/ddg.js" ],
             "run_at": "document_end",
             "all_frames":true
         }
     ],
     "background": {
         "scripts": [
-            "background/sw.js"
+            "../background/sw.js"
         ]
     },
     "web_accessible_resources": [
-        "content/*"
+        "../content/*"
     ]
 }

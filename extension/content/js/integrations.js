@@ -249,7 +249,7 @@ let integrations = [
             rtLinkUrl.style.fontWeight = "500"
             rtLinkUrl.style.fontSize = "0.9em"
             rtLinkUrl.style.color = "inherit"
-            rtLinkUrl.style.marginBottom = "0.3em"
+            rtLinkUrl.style.marginBottom = "0.7em"
 
             let publicationDate = new Date(moviedata.claims.P577[0].value.time)
 
@@ -298,7 +298,6 @@ async function newValidPreview(urls, theme) {
         }
     }
 
-    console.log("No preview");
     return
 }
 

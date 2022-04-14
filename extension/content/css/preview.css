@@ -55,7 +55,7 @@ pre code.hljs {
     color: var(--mrr-color-0);
     width: auto;
     font-size: 15px;
-    padding: 14px 12px;
+    margin-bottom: 1em;
     
     transition: visibility 0s, opacity .4s ease;
 
