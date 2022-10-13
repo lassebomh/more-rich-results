@@ -56,7 +56,7 @@ export default {
                                 <a href={"https://www.reddit.com/user/"+comment.data.author}>
                                     u/{comment.data.author} 
                                 </a>
-                                <span> • {comment.data.score} votes</span>
+                                <span> • {comment.data.score} score</span>
                                 <span> • {numberToLocaleDateString(comment.data.created*1000)} {numberToLocaleTimeString(comment.data.created*1000)}</span>
                             </div>
                             {contentElement}
@@ -75,7 +75,7 @@ export default {
                         <a href={"https://www.reddit.com/user/"+post.author}>u/{post.author} </a>
                         <span>on </span>
                         <a href={"https://www.reddit.com/r/"+post.subreddit}>r/{post.subreddit}</a>
-                        <span> • {post.score} votes</span>
+                        <span> • {post.score} points</span>
                         <span> • {numberToLocaleDateString(post.created*1000)} {numberToLocaleTimeString(post.created*1000)}</span>
                     </div>
                 </div>
