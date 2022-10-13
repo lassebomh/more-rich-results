@@ -1,0 +1,47 @@
+
+.previewContainer {
+    width: 600px;
+    max-height: 150vh;
+    overflow-y: auto;
+    margin-left: 2rem;
+    padding-right: 0.5rem;
+}
+
+.previewContainer hr {
+    border: 0;
+    border-bottom: 1px solid rgba(var(--mrr-color), 0.2);
+}
+
+.previewContainer blockquote {
+    color: rgba(var(--mrr-color), 0.6);
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+    border-left: 3px solid rgba(var(--mrr-color), 0.2);
+}
+
+.previewContainer img {
+    max-width: 100%;
+}
+
+.previewContainer::-webkit-scrollbar, .previewContainer *::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.previewContainer::-webkit-scrollbar-track, .previewContainer *::-webkit-scrollbar-track {
+    background: rgba(var(--mrr-color), 0.1); 
+}
+
+.previewContainer::-webkit-scrollbar-thumb, .previewContainer *::-webkit-scrollbar-thumb {
+    background: rgba(var(--mrr-color), 0.2); 
+    border-radius: 100px;
+}
+
+.previewContainer::-webkit-scrollbar-thumb:hover, .previewContainer *::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--mrr-color), 0.3); 
+}
+
+.hljs {
+    background-color: rgba(var(--mrr-color), 0.06) !important;
+    border-radius: 4px;
+}
