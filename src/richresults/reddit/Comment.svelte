@@ -8,7 +8,7 @@
     export let comment: any;
     export let post: any;
 
-    let shown = comment.data.score/(1 + post.ups + post.downs) > 0.5;
+    let shown = comment.data.score/(1 + post.ups + post.downs) > 0.4;
 </script>
 
 <div style="border-color: rgba(var(--mrr-color), 0.25)" class="w-full border-solid border-0 border-l-2 pl-2 ml-2 relative">
@@ -17,11 +17,11 @@
         <a class="text-[inherit]" href={"https://www.reddit.com/user/"+comment.data.author}>u/{comment.data.author}</a> • {comment.data.score} points • {moment(comment.data.created*1000).fromNow()}
     </div>
     {#if shown}
-        <CodeHighlight class="mb-4 last:(pb-0 mb-0) first:(pt-0 mt-0)">
+        <CodeHighlight class="mb-4 trimMargin">
             {@html htmlDecode(comment.data.body_html)}
         </CodeHighlight>
         {#if comment.data.replies}
-            <Comments comments={comment.data.replies.data.children} {post} />
+            <Comments comments={comment.data.replies.data.children} {post} limit={undefined} />
         {/if}
     {/if}
 </div>

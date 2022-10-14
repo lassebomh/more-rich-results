@@ -5,6 +5,12 @@ export default defineManifest({
   description: "",
   version: '1.0.0',
   manifest_version: 3,
+  icons: {
+    "16": "src/assets/images/icon_16.png",
+    "32": "src/assets/images/icon_32.png",
+    "64": "src/assets/images/icon_64.png",
+    "256": "src/assets/images/icon_256.png",
+  },
   background: {
     service_worker: 'src/background/main.ts',
     type: 'module',
@@ -19,6 +25,7 @@ export default defineManifest({
     {
       resources: [
         'src/assets/hljs/*',
+        'src/assets/images/*',
       ],
       matches: [
         "http://*/*",

@@ -44,7 +44,7 @@
             </div>
             <a href={post.url}><h1 class="text-2xl">{@html post.title}</h1></a>
             {#if post.selftext_html}
-                <CodeHighlight>
+                <CodeHighlight class="pb-2 trimMargin">
                     {@html htmlDecode(post.selftext_html) ?? ""}
                 </CodeHighlight>
             {/if}            

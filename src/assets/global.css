@@ -6,7 +6,18 @@
     margin-left: 1.5rem;
     margin-right: 3rem;
     font-size: 0.9rem;
-    line-height: 1.57em;
+}
+
+.previewContainer * {
+    line-height: 1.5em;
+}
+
+.previewContainer .trimMargin *:first-child {
+    margin-top: 0;
+}
+
+.previewContainer .trimMargin *:last-child {
+    margin-bottom: 0;
 }
 
 .previewContainer hr {
