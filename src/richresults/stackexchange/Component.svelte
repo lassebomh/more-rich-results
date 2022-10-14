@@ -62,7 +62,7 @@
                 {@html question.body}
             </CodeHighlight>
         {/if}
-        <div style="border-color: rgba(var(--mrr-color), 0.2)" class="border border-solid rounded px-3 pt-2 mb-4">
+        <div style="border-color: rgba(var(--mrr-color), 0.2);" class="border border-solid rounded px-3 pt-2 mb-4">
             <div class="flex justify-start items-center text-[0.9em] gap-3 mb-1">
                 <div class="opacity-60">
                     Score {prettifyNumber(answer.score)}
