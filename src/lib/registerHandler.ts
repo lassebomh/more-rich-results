@@ -4,18 +4,21 @@ import 'virtual:windi-utilities.css';
 import '../assets/global.css';
 
 import type { PlatformHandler } from "./types";
-import StackExchange from "../richresults/stackexchange/StackExchange";
 
-const RICH_RESULTS = [StackExchange]
+import StackExchange from "../richresults/stackexchange/StackExchange";
+import Reddit from "../richresults/reddit/Reddit";
+
+const RICH_RESULTS = [StackExchange, Reddit]
 
 export async function registerHandler(platform: PlatformHandler) {
-    const results = platform.getResultUrls(); console.log(results);
+    const results = platform.getResultUrls()
 
     urlLoop:    
     for (const url of results) {
         
-        linkLoop:
+        resultLoop:
         for (const richResult of RICH_RESULTS) {
+
             if (richResult.match(url)) {
                 // setup
                 const theme = platform.getTheme()
@@ -35,13 +38,12 @@ export async function registerHandler(platform: PlatformHandler) {
                 const container = platform.setupContainer()
 
                 // mount
-                
-                const Component = await StackExchange.getComponent()
+                const Component = await richResult.getComponent()
                 new Component({ target: container, props: { url } })
                 
                 break urlLoop;
             } else {
-                continue urlLoop;
+                continue resultLoop;
             }
         }    
     }

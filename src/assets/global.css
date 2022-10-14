@@ -1,9 +1,8 @@
 
 .previewContainer {
     width: 600px;
-    max-height: 150vh;
     overflow-y: auto;
-    margin-left: 2rem;
+    margin-left: 1rem;
     padding-right: 0.5rem;
 }
 
@@ -43,5 +42,5 @@
 
 .hljs {
     background-color: rgba(var(--mrr-color), 0.06) !important;
-    border-radius: 4px;
+    /* border-radius: 4px; */
 }

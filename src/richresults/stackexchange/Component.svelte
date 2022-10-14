@@ -1,8 +1,7 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import { fetch, prettifyNumber, htmlDecode } from '../../lib/contentutils'
-    import hljs from 'highlight.js'
     import moment from 'moment'
+    import CodeHighlight from "../../components/CodeHighlight.svelte";
 
     export let url: URL;
 
@@ -25,17 +24,16 @@
         answer = question.answers.length > 0 && question.answers[0]
         
         resolve(json)
-        setTimeout(hljs.highlightAll, 0)
     })
-
-    console.log('hello');
 </script>
 
 {#await data}
     Loading...
 {:then _}
     <div>
-        <a href={question.link}><h1 class="text-2xl">{@html question.title}</h1></a>
+        <a href={question.link}><h1 class="text-2xl">
+            {@html question.title}
+        </h1></a>
         <div class="flex justify-start items-center gap-4 py-1 opacity-75">
             <div>
                 <span>Viewed</span> {prettifyNumber(question.view_count)} times
@@ -47,7 +45,11 @@
                 <span>Modified</span> {moment(question.last_edit_date*1000).fromNow(true)} ago
             </div>
         </div>
-        <div class={questionIsVisible ? "" : "opacity-0 h-0 overflow-hidden"}>{@html question.body}</div>
+        <div class={questionIsVisible ? "" : "opacity-0 h-0 overflow-hidden"}>
+            <CodeHighlight>
+                {@html question.body}
+            </CodeHighlight>
+        </div>
         {#if !questionIsVisible}
             <button
                 on:click={_ => questionIsVisible = true}
@@ -70,7 +72,11 @@
                 </div>
                 <div class="flex-grow text-right text-lg" title="Accepted answer">✅</div>
             </div>
-            <div>{@html answer.body}</div>
+            <div>
+                <CodeHighlight>
+                    {@html answer.body}
+                </CodeHighlight>
+            </div>
         </div>
         {#if question.answers.length > 1}
             <div class="text-center">

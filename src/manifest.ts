@@ -12,7 +12,7 @@ export default defineManifest({
   content_scripts: [
     {
       matches: ['*://www.google.com/search?q=*'],
-      js: ['src/content/googleHandler.ts'],
+      js: ['src/content/googlehandler.ts'],
     },
   ],
   web_accessible_resources: [

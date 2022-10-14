@@ -19,7 +19,6 @@ registerHandler({
     setupContainer: (): HTMLElement => {
         const rcnt = document.querySelector("#rcnt") as HTMLElement
         rcnt.style.maxWidth = 'initial';
-
         const rhs = document.querySelector("#rhs")
 
         let previewContainer: HTMLElement;
@@ -32,10 +31,7 @@ registerHandler({
         }
         
         previewContainer.classList.add("previewContainer")
-        
         rcnt.appendChild(previewContainer as Node)
-        
-        let a: {[key: string]: any}
 
         return previewContainer
     },
