@@ -34,7 +34,7 @@
         <a href={question.link}><h1 class="text-2xl">
             {@html question.title}
         </h1></a>
-        <div class="flex justify-start items-center gap-4 py-1 opacity-75">
+        <div class="flex justify-start items-center gap-3 py-1 opacity-75">
             <div>
                 <span>Viewed</span> {prettifyNumber(question.view_count)} times
             </div>
@@ -61,7 +61,7 @@
             </button>
         {/if}
         <div style="border-color: rgba(var(--mrr-color), 0.1)" class="border border-solid rounded px-3 pt-2 mb-4">
-            <div class="flex justify-start items-center gap-4">
+            <div class="flex justify-start items-center gap-3">
                 <div class="opacity-75">
                     Score {prettifyNumber(answer.score)}
                 </div>
@@ -71,7 +71,7 @@
                 <div class="opacity-75">
                     Modified {moment(answer.last_edit_date*1000).fromNow(true)} ago
                 </div>
-                <div class="flex-grow text-right text-lg" title="Accepted answer">✅</div>
+                <div class="flex-grow text-right text-lg" title="Accepted answer">🗹</div>
             </div>
             <div>
                 <CodeHighlight>
