@@ -4,16 +4,17 @@
     export let comments: any[];
     export let post: any;
     export let limit: number | undefined;
+    export let showFirst: boolean | undefined;
 
     comments.sort((a, b) => a.data.score - b.data.score).reverse()
     if (limit) comments = comments.slice(0, limit)
 
 </script>
 
-<div class="flex justify-start items-start flex-col text-[0.9em] gap-2">
-    {#each comments as comment}
+<div class="flex justify-start items-start flex-col text-[0.85rem] gap-2">
+    {#each comments as comment, i}
         {#if comment.data.author}
-            <Comment {comment} {post} />
+            <Comment {comment} {post} shown={showFirst && i == 0 ? true : undefined} />
         {/if}
     {/each}
 </div>

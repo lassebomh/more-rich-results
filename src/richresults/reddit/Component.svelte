@@ -33,24 +33,24 @@
 {:then _} 
     <div>
         <div class="ml-2">
-            <div class="flex justify-start items-center text-[0.9em] gap-4 py-1 opacity-75">
+            <div class="flex justify-start items-center text-[0.8rem] gap-4 pt-1 opacity-75">
                 <div>
                     Posted by
                     <a href={"https://www.reddit.com/user/"+post.author} class="text-[inherit]">u/{post.author}</a>
                     on
                     <a href={"https://www.reddit.com/r/"+post.subreddit} class="text-[inherit]">r/{post.subreddit}</a>
-                    {moment(post.created*1000).fromNow(true)} ago • {post.score} points
+                    {moment(post.created*1000).fromNow()}
                 </div>
             </div>
-            <a href={post.url}><h1 class="text-2xl">{@html post.title}</h1></a>
+            <a href={post.url}><h1 class="text-xl pb-2 pt-1">{@html post.title}</h1></a>
             {#if post.selftext_html}
-                <CodeHighlight class="pb-2 trimMargin">
+                <CodeHighlight class="pb-3 trimMargin">
                     {@html htmlDecode(post.selftext_html) ?? ""}
                 </CodeHighlight>
             {/if}            
         </div>
         {#if comments}
-            <Comments comments={comments} limit={8} {post} />
+            <Comments comments={comments} limit={8} {post} showFirst={true} />
         {/if}
         {#if comments.length > 8}
             <div class="pt-2">

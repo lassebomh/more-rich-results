@@ -1,10 +1,10 @@
 
 .previewContainer {
-    width: 600px;
+    max-width: 570px;
     min-width: 440px;
     overflow-y: auto;
-    margin-left: 1.5rem;
-    margin-right: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 3rem;
     font-size: 0.9rem;
 }
 
@@ -15,7 +15,6 @@
 .previewContainer .trimMargin *:first-child {
     margin-top: 0;
 }
-
 .previewContainer .trimMargin *:last-child {
     margin-bottom: 0;
 }

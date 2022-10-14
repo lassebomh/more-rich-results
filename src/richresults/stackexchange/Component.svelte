@@ -39,10 +39,10 @@
                 <span>Viewed</span> {prettifyNumber(question.view_count)} times
             </div>
             <div>
-                <span>Asked</span> {moment(question.creation_date*1000).fromNow(true)} ago
+                <span>Asked</span> {moment(question.creation_date*1000).fromNow()}
             </div>
             <div>
-                <span>Modified</span> {moment(question.last_edit_date*1000).fromNow(true)} ago
+                <span>Modified</span> {moment(question.last_edit_date*1000).fromNow()}
             </div>
         </div>
         {#if questionIsVisible}
@@ -55,7 +55,7 @@
             <button
                 on:click={_ => questionIsVisible = true}
                 style="background-color: rgba(var(--mrr-color), 0.1)"
-                class="w-full py-3 border-none rounded my-4 cursor-pointer">
+                class="w-full py-2 border-none rounded my-3 cursor-pointer">
                 
                 Show question
             </button>
@@ -66,10 +66,10 @@
                     Score {prettifyNumber(answer.score)}
                 </div>
                 <div class="opacity-75">
-                    Posted {moment(answer.creation_date*1000).fromNow(true)} ago
+                    Posted {moment(answer.creation_date*1000).fromNow()}
                 </div>
                 <div class="opacity-75">
-                    Modified {moment(answer.last_edit_date*1000).fromNow(true)} ago
+                    Modified {moment(answer.last_edit_date*1000).fromNow()}
                 </div>
                 <div class="flex-grow text-right text-lg" title="Accepted answer">🗹</div>
             </div>

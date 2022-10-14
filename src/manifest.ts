@@ -3,7 +3,7 @@ import { defineManifest } from '@crxjs/vite-plugin'
 export default defineManifest({
   name: 'Stack Overflow & Reddit in Google',
   description: "",
-  version: '1.0.0',
+  version: '1.0.1',
   manifest_version: 3,
   icons: {
     "16": "src/assets/images/icon_16.png",
