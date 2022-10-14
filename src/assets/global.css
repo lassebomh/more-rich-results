@@ -41,6 +41,10 @@
     max-width: 100%;
 }
 
+.previewContainer li {
+    margin-left: 1.5em;
+}
+
 .previewContainer::-webkit-scrollbar, .previewContainer *::-webkit-scrollbar {
     width: 5px;
     height: 5px;

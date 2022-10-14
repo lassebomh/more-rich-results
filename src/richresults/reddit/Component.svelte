@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { fetch, prettifyNumber, htmlDecode } from '../../lib/contentutils'
+    import { fetch, prettifyNumber } from '../../lib/contentutils'
     import moment from 'moment'
 
-    import CodeHighlight from "../../components/CodeHighlight.svelte";
+    import HTMLContent from "../../components/HTMLContent.svelte";
     import Comments from './Comments.svelte';
 
     export let url;
@@ -44,9 +44,7 @@
             </div>
             <a href={post.url}><h1 class="text-xl pb-2 pt-1">{@html post.title}</h1></a>
             {#if post.selftext_html}
-                <CodeHighlight class="pb-3 trimMargin">
-                    {@html htmlDecode(post.selftext_html) ?? ""}
-                </CodeHighlight>
+                <HTMLContent class="trimMargin pb-3" html={post.selftext_html} decode={true} origin="https://www.reddit.com" />
             {/if}            
         </div>
         {#if comments}

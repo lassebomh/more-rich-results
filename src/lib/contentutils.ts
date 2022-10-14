@@ -15,8 +15,3 @@ export function prettifyNumber(value: number): string {
         maximumFractionDigits: 0
     }).format(value)
 }
-
-export function htmlDecode(input: string): string | null {
-    var doc = new DOMParser().parseFromString(input, "text/html");
-    return doc.documentElement.textContent;
-}
