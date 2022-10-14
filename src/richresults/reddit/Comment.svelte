@@ -8,7 +8,7 @@
     export let comment: any;
     export let post: any;
 
-    export let shown: boolean | undefined
+    export let shown: boolean | undefined = undefined
 
     if (shown === undefined) {
         shown = comment.data.score/(1 + post.ups + post.downs) > 0.4;
