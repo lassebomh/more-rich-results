@@ -30,7 +30,9 @@ registerHandler({
             rcnt.style.flexWrap = "initial";
         }
         
+        previewContainer.style.paddingLeft = "1.5rem"
         previewContainer.classList.add("previewContainer")
+
         rcnt.appendChild(previewContainer as Node)
 
         return previewContainer

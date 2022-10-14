@@ -22,8 +22,10 @@ export async function registerHandler(platform: PlatformHandler) {
             if (richResult.match(url)) {
                 // setup
                 const theme = platform.getTheme()
-                const textColor = theme['--mrr-color']
-                const isDark = textColor[0]+textColor[1]+textColor[2] < 100*3
+                const mrrColor = theme['--mrr-color']
+                const rgb = mrrColor.split(', ').map(s => parseInt(s))
+                
+                const isDark = rgb[0]+rgb[1]+rgb[2] > 130*3
                 
                 var hljsCss = document.createElement("link");
                 hljsCss.rel = "stylesheet";
@@ -36,6 +38,7 @@ export async function registerHandler(platform: PlatformHandler) {
                 }
                 
                 const container = platform.setupContainer()
+                container.style.color = `rgb(${mrrColor})`
 
                 // mount
                 const Component = await richResult.getComponent()

@@ -35,13 +35,13 @@
             <h1 class="text-2xl">{@html question.title}</h1>
         </a>
         <div class="flex justify-start items-center text-[0.9em] gap-3 pt-1 pb-2 opacity-60">
-            <div>
+            <div class="w-max">
                 Viewed {prettifyNumber(question.view_count)} times
             </div>
-            <div>
+            <div class="w-max">
                 Asked {moment(question.creation_date*1000).fromNow()}
             </div>
-            <div>
+            <div class="w-max">
                 Modified {moment(question.last_edit_date*1000).fromNow()}
             </div>
             <div class="flex-grow text-right">
@@ -64,16 +64,16 @@
         {/if}
         <div style="border-color: rgba(var(--mrr-color), 0.2);" class="border border-solid rounded px-3 py-2 mb-4">
             <div class="flex justify-start items-center text-[0.9em] gap-3 mb-1">
-                <div class="opacity-60">
+                <div class="opacity-60 w-max">
                     Score {prettifyNumber(answer.score)}
                 </div>
-                <div class="opacity-60">
+                <div class="opacity-60 w-max">
                     Posted {moment(answer.creation_date*1000).fromNow()}
                 </div>
-                <div class="opacity-60">
+                <div class="opacity-60 w-max">
                     Modified {moment(answer.last_edit_date*1000).fromNow()}
                 </div>
-                <div class="flex-grow text-right text-lg text-lime-500" title="Accepted answer">🗹</div>
+                <div class="flex-grow text-right text-lg text-lime-500 w-max" title="Accepted answer">🗹</div>
             </div>
             <HTMLContent class="trimMargin" html={answer.body} origin={url.origin} />
         </div>

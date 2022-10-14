@@ -22,7 +22,7 @@
             hljs.highlightElement(code)
         })
         root.querySelectorAll('a').forEach(a => {
-            let match = a.outerHTML.match(/href\s*=\s*['"](\/[^'"]+)['"]/)
+            let match = a.outerHTML.match(/href\s*=\s*['"](\/[^'"]+)['"]/) // extracts a relative href
             if (match) a.href = origin + match[1]
         })
     })

@@ -21,6 +21,10 @@ export default defineManifest({
       matches: ['*://www.google.com/search?q=*'],
       js: ['src/content/googlehandler.ts'],
     },
+    {
+      matches: ['*://www.startpage.com/sp/search', '*://www.startpage.com/sp/search*', '*://www.startpage.com/do/search', '*://www.startpage.com/do/search*'],
+      js: ['src/content/startpagehandler.ts'],
+    },
   ],
   web_accessible_resources: [
     {
