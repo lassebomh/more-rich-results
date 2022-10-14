@@ -3,8 +3,10 @@
 
     export let comments: any[];
     export let post: any;
+    export let limit: number | undefined;
 
     comments.sort((a, b) => a.data.score - b.data.score).reverse()
+    if (limit) comments = comments.slice(0, limit)
 
 </script>
 

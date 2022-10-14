@@ -2,7 +2,7 @@
 .previewContainer {
     width: 600px;
     overflow-y: auto;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     padding-right: 0.5rem;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .previewContainer blockquote {
-    color: rgba(var(--mrr-color), 0.6);
+    color: rgba(var(--mrr-color), 0.7);
     padding-left: 0.5rem;
     margin-left: 0.5rem;
     border-left: 3px solid rgba(var(--mrr-color), 0.2);

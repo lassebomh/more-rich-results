@@ -50,9 +50,9 @@
             {/if}            
         </div>
         {#if comments}
-            <Comments comments={comments.slice(0, 10)} {post} />
+            <Comments comments={comments} limit={8} {post} />
         {/if}
-        {#if comments.length > 10}
+        {#if comments.length > 8}
             <div class="pt-2">
                 <a class="ml-2" href={post.url}>
                     More comments
