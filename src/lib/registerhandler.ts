@@ -27,9 +27,6 @@ export async function registerHandler(platform: PlatformHandler) {
                 
                 const isDark = rgb[0]+rgb[1]+rgb[2] > 130*3
 
-                console.log(isDark);
-                
-                
                 var hljsCss = document.createElement("link");
                 hljsCss.rel = "stylesheet";
                 hljsCss.href = chrome.runtime.getURL(isDark ? 'src/assets/hljs/github-dark.css' : 'src/assets/hljs/github.css');

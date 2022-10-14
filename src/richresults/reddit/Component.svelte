@@ -43,7 +43,7 @@
                     
                 </div>
             </div>
-            <a href={post.url}><h1 class="text-2xl pb-2 pt-1">{@html post.title}</h1></a>
+            <a href={post.url}><h1 class="text-2xl font-normal pb-2 pt-1">{@html post.title}</h1></a>
             {#if post.selftext_html}
                 <HTMLContent class="trimMargin pb-3" html={post.selftext_html} decode={true} origin="https://www.reddit.com" />
             {/if}

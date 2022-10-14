@@ -5,15 +5,12 @@ registerHandler({
     getResultUrls: async (): Promise<URL[]> => {
         let atags = [...document.querySelectorAll("#urls .result > a")]
 
-        console.log(atags.map((a: HTMLLinkElement) => new URL(a.href)));
-        
         return atags.map((a: HTMLLinkElement) => new URL(a.href))
     },
 
     setupContainer: (): HTMLElement => {
         const sidebar = document.getElementById("sidebar") as HTMLElement
         sidebar.parentElement.style.gridTemplateColumns = "45rem 35rem"
-        // sidebar.style.maxWidth = "min-content"
 
         let previewContainer = document.createElement("div") as HTMLElement
         previewContainer.classList.add("previewContainer")

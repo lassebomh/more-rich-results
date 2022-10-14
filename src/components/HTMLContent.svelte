@@ -16,8 +16,6 @@
     let root: HTMLElement;
 
     onMount(() => {
-        console.log('hello!');
-        
         root.querySelectorAll('code').forEach(code => {
             hljs.highlightElement(code)
         })

@@ -22,7 +22,7 @@
         })
 
         answer = question.answers.length > 0 && question.answers[0]
-        
+
         resolve(json)
     })
 </script>
@@ -32,7 +32,7 @@
 {:then _}
     <div>
         <a href={question.link}>
-            <h1 class="text-2xl">{@html question.title}</h1>
+            <h1 class="text-2xl font-normal">{@html question.title}</h1>
         </a>
         <div class="flex justify-start items-center text-[0.9em] gap-3 pt-1 pb-2 opacity-60">
             <div class="w-max">
@@ -70,9 +70,11 @@
                 <div class="opacity-60 w-max">
                     Posted {moment(answer.creation_date*1000).fromNow()}
                 </div>
-                <div class="opacity-60 w-max">
-                    Modified {moment(answer.last_edit_date*1000).fromNow()}
-                </div>
+                {#if answer.last_edit_date}
+                    <div class="opacity-60 w-max">
+                        Modified {moment(answer.last_edit_date*1000).fromNow()}
+                    </div>
+                {/if}
                 <div class="flex-grow text-right text-lg text-lime-500 w-max" title="Accepted answer">🗹</div>
             </div>
             <HTMLContent class="trimMargin" html={answer.body} origin={url.origin} />
