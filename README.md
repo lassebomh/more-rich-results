@@ -1,4 +1,4 @@
-# More Search Previews <img src="extension/icon_256.png" width="24">
+# More Search Previews <img src="src/assets/images/icon_256.png" width="24">
 
 This extension adds Stack Overflow and Reddit previews to the Google search page.
 
