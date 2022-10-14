@@ -34,50 +34,50 @@
         <a href={question.link}><h1 class="text-2xl">
             {@html question.title}
         </h1></a>
-        <div class="flex justify-start items-center text-[0.9em] gap-3 py-1 opacity-75">
+        <div class="flex justify-start items-center text-[0.9em] gap-3 pt-1 pb-2 opacity-60">
             <div>
-                <span>Viewed</span> {prettifyNumber(question.view_count)} times
+                Viewed {prettifyNumber(question.view_count)} times
             </div>
             <div>
-                <span>Asked</span> {moment(question.creation_date*1000).fromNow()}
+                Asked {moment(question.creation_date*1000).fromNow()}
             </div>
             <div>
-                <span>Modified</span> {moment(question.last_edit_date*1000).fromNow()}
+                Modified {moment(question.last_edit_date*1000).fromNow()}
+            </div>
+            <div class="flex-grow text-right">
+                <button on:click={_ => questionIsVisible = !questionIsVisible}
+                    class="bg-transparent border-none hover:underline text-[inherit] cursor-pointer p-0">
+                    {#if questionIsVisible}
+                        Hide question
+                    {:else}
+                        Show question
+                    {/if}
+                </button>
             </div>
         </div>
         {#if questionIsVisible}
-            <div>
-                <CodeHighlight>
-                    {@html question.body}
-                </CodeHighlight>
-            </div>
-        {:else}
-            <button
-                on:click={_ => questionIsVisible = true}
-                style="background-color: rgba(var(--mrr-color), 0.1)"
-                class="w-full py-2 border-none rounded my-3 cursor-pointer">
-                
-                Show question
-            </button>
+            <CodeHighlight
+                    class="trimMargin border-0 border-t border-solid pt-2.5"
+                    style="border-color: rgba(var(--mrr-color), 0.2)">
+                {@html question.body}
+            </CodeHighlight>
         {/if}
-        <div style="border-color: rgba(var(--mrr-color), 0.1)" class="border border-solid rounded px-3 pt-2 mb-4">
-            <div class="flex justify-start items-center text-[0.9em] gap-3">
-                <div class="opacity-75">
+        <div style="border-color: rgba(var(--mrr-color), 0.2)" class="border border-solid rounded px-3 pt-2 mb-4">
+            <div class="flex justify-start items-center text-[0.9em] gap-3 mb-1">
+                <div class="opacity-60">
                     Score {prettifyNumber(answer.score)}
                 </div>
-                <div class="opacity-75">
+                <div class="opacity-60">
                     Posted {moment(answer.creation_date*1000).fromNow()}
                 </div>
-                <div class="opacity-75">
+                <div class="opacity-60">
                     Modified {moment(answer.last_edit_date*1000).fromNow()}
                 </div>
-                <div class="flex-grow text-right text-lg" title="Accepted answer">🗹</div>
+                <div class="flex-grow text-right text-lg text-lime-500" title="Accepted answer">🗹</div>
             </div>
-            <div>
-                <CodeHighlight>
-                    {@html answer.body}
-                </CodeHighlight>
-            </div>
+            <CodeHighlight class="trimMargin">
+                {@html answer.body}
+            </CodeHighlight>
         </div>
         {#if question.answers.length > 1}
             <div class="text-center">
