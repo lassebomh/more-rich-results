@@ -33,7 +33,7 @@
 {:then _} 
     <div>
         <div class="ml-2">
-            <div class="flex justify-start items-center gap-4 py-1 opacity-75">
+            <div class="flex justify-start items-center text-[0.9em] gap-4 py-1 opacity-75">
                 <div>
                     Posted by
                     <a href={"https://www.reddit.com/user/"+post.author} class="text-[inherit]">u/{post.author}</a>

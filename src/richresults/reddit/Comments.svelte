@@ -10,7 +10,7 @@
 
 </script>
 
-<div class="flex justify-start items-start flex-col gap-2">
+<div class="flex justify-start items-start flex-col text-[0.9em] gap-2">
     {#each comments as comment}
         {#if comment.data.author}
             <Comment {comment} {post} />
