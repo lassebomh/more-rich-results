@@ -1,7 +1,7 @@
 import { registerHandler } from "../lib/registerhandler"
 
 registerHandler({
-    getResultUrls: (): URL[] => {
+    getResultUrls: async (): Promise<URL[]> => {
         const resultsElement: Element | null = document.querySelector("#rso")
         
         const links: URL[] = []

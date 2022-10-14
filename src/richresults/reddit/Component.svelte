@@ -39,13 +39,14 @@
                     <a href={"https://www.reddit.com/user/"+post.author} class="text-[inherit]">u/{post.author}</a>
                     on
                     <a href={"https://www.reddit.com/r/"+post.subreddit} class="text-[inherit]">r/{post.subreddit}</a>
-                    {moment(post.created*1000).fromNow()}
+                    {moment(post.created*1000).fromNow()} • {post.score} points
+                    
                 </div>
             </div>
-            <a href={post.url}><h1 class="text-xl pb-2 pt-1">{@html post.title}</h1></a>
+            <a href={post.url}><h1 class="text-2xl pb-2 pt-1">{@html post.title}</h1></a>
             {#if post.selftext_html}
                 <HTMLContent class="trimMargin pb-3" html={post.selftext_html} decode={true} origin="https://www.reddit.com" />
-            {/if}            
+            {/if}
         </div>
         {#if comments}
             <Comments comments={comments} limit={8} {post} showFirst={true} />

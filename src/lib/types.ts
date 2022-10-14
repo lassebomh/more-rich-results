@@ -1,7 +1,7 @@
 import type { ComponentType } from "svelte";
 
 export interface PlatformHandler {
-    getResultUrls: () => URL[],
+    getResultUrls: () => Promise<URL[]>,
     setupContainer: () => HTMLElement,
     getTheme: () => {[key: string]: any},
 }

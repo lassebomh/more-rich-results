@@ -3,7 +3,7 @@ import { defineManifest } from '@crxjs/vite-plugin'
 export default defineManifest({
   name: 'Stack Overflow & Reddit in Google',
   description: "",
-  version: '1.0.2',
+  version: '1.1.0',
   manifest_version: 3,
   icons: {
     "16": "src/assets/images/icon_16.png",
@@ -24,6 +24,14 @@ export default defineManifest({
     {
       matches: ['*://www.startpage.com/sp/search', '*://www.startpage.com/sp/search*', '*://www.startpage.com/do/search', '*://www.startpage.com/do/search*'],
       js: ['src/content/startpagehandler.ts'],
+    },
+    {
+      matches: ['*://duckduckgo.com/?q=*'],
+      js: ['src/content/duckduckgohandler.ts'],
+    },
+    {
+      matches: ['*://searx.tiekoetter.com/search?q=*'],
+      js: ['src/content/searxhandler.ts'],
     },
   ],
   web_accessible_resources: [

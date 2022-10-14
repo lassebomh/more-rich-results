@@ -11,7 +11,7 @@ import Reddit from "../richresults/reddit/Reddit";
 const RICH_RESULTS = [StackExchange, Reddit]
 
 export async function registerHandler(platform: PlatformHandler) {
-    const results = platform.getResultUrls()
+    const results = await platform.getResultUrls()
 
     urlLoop:    
     for (const url of results) {
@@ -26,6 +26,9 @@ export async function registerHandler(platform: PlatformHandler) {
                 const rgb = mrrColor.split(', ').map(s => parseInt(s))
                 
                 const isDark = rgb[0]+rgb[1]+rgb[2] > 130*3
+
+                console.log(isDark);
+                
                 
                 var hljsCss = document.createElement("link");
                 hljsCss.rel = "stylesheet";

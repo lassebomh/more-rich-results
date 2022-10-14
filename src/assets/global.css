@@ -6,6 +6,7 @@
     /* padding-left: 6rem;
     padding-right: 3rem; */
     font-size: 0.9rem;
+    margin-bottom: 1rem;
 }
 @media only screen and (max-width: 1500px) {
     .previewContainer {
@@ -22,6 +23,12 @@
     margin: 0.3em 0;
     padding: 0;
 }
+
+.previewContainer pre {
+    background-color: transparent;
+    padding: 0;
+}
+
 .previewContainer a {
     text-decoration: none;
 }

@@ -1,15 +1,19 @@
 import { registerHandler } from "../lib/registerhandler"
+// import { waitForElement } from '../lib/contentutils'
 
 registerHandler({
     getResultUrls: async (): Promise<URL[]> => {
-        const atags: Element[] = [...document.querySelectorAll(".result-link")]
+        let atags = [...document.querySelectorAll("#urls .result > a")]
 
+        console.log(atags.map((a: HTMLLinkElement) => new URL(a.href)));
+        
         return atags.map((a: HTMLLinkElement) => new URL(a.href))
     },
 
     setupContainer: (): HTMLElement => {
-        const sidebar = document.querySelector(".layout-web__sidebar") as HTMLElement
-        sidebar.style.maxWidth = "initial"
+        const sidebar = document.getElementById("sidebar") as HTMLElement
+        sidebar.parentElement.style.gridTemplateColumns = "45rem 35rem"
+        // sidebar.style.maxWidth = "min-content"
 
         let previewContainer = document.createElement("div") as HTMLElement
         previewContainer.classList.add("previewContainer")
@@ -20,16 +24,11 @@ registerHandler({
     },
 
     getTheme: () => {
-        // const isDark = document.querySelector(":root").classList.contains("startpage-html--dark")
-        // const rgb = isDark ? [255, 255, 255] : [32, 41, 69]
-
-        const searchInput = document.querySelector('input[type="text"][name="query"]')
+        const searchInput = document.getElementById('q')
         
         const searchInputColor = window.getComputedStyle(searchInput).getPropertyValue("color")
         const rgb = searchInputColor.match(/\d+/g)!
                                     .map((value) => parseInt(value))
-
-        // ADD LINK COLORS TO THEME
 
         return {
             '--mrr-color': rgb.join(", "),
