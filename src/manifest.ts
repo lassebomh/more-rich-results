@@ -9,6 +9,7 @@ export default defineManifest({
     "16": "src/assets/images/icon_16.png",
     "32": "src/assets/images/icon_32.png",
     "64": "src/assets/images/icon_64.png",
+    "128": "src/assets/images/icon_128.png",
     "256": "src/assets/images/icon_256.png",
   },
   background: {
