@@ -63,3 +63,9 @@
     background-color: rgba(var(--mrr-color), 0.06) !important;
     /* border-radius: 4px; */
 }
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+

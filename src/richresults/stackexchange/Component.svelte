@@ -56,13 +56,15 @@
             </div>
         </div>
         {#if questionIsVisible}
-            <CodeHighlight
-                    class="trimMargin border-0 border-t border-solid pt-2.5"
-                    style="border-color: rgba(var(--mrr-color), 0.2)">
-                {@html question.body}
-            </CodeHighlight>
+            <div class="border-0 border-t border-solid pt-2.5 pb-3"
+                style="border-color: rgba(var(--mrr-color), 0.2); animation: fadein 0.5s;">
+
+                <CodeHighlight class="trimMargin">
+                    {@html question.body}
+                </CodeHighlight>
+            </div>
         {/if}
-        <div style="border-color: rgba(var(--mrr-color), 0.2);" class="border border-solid rounded px-3 pt-2 mb-4">
+        <div style="border-color: rgba(var(--mrr-color), 0.2);" class="border border-solid rounded px-3 py-2 mb-4">
             <div class="flex justify-start items-center text-[0.9em] gap-3 mb-1">
                 <div class="opacity-60">
                     Score {prettifyNumber(answer.score)}
