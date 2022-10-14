@@ -45,12 +45,13 @@
                 <span>Modified</span> {moment(question.last_edit_date*1000).fromNow(true)} ago
             </div>
         </div>
-        <div class={questionIsVisible ? "" : "opacity-0 h-0 overflow-hidden"}>
-            <CodeHighlight>
-                {@html question.body}
-            </CodeHighlight>
-        </div>
-        {#if !questionIsVisible}
+        {#if questionIsVisible}
+            <div>
+                <CodeHighlight>
+                    {@html question.body}
+                </CodeHighlight>
+            </div>
+        {:else}
             <button
                 on:click={_ => questionIsVisible = true}
                 style="background-color: rgba(var(--mrr-color), 0.1)"
