@@ -2,13 +2,17 @@
 
 This extension adds Stack Overflow and Reddit previews to the Google search page (among others).
 
+It works by requesting public (and official) APIs when the link to a search result matches an implemented result preview.
+
+It makes no outbound requests other than these and is written in a simple fashion that makes it easy to extend.
+
 ![Previews](https://i.imgur.com/IMpVkYB.png)
 
 ## Features
 
 ### Result Previews
  - Reddit
- - Stack Exchange (Stack Overflow, Server Fault, Ask Ubuntu, ...)
+ - Stack Exchange solutions (Stack Overflow, Server Fault, Ask Ubuntu, ...)
 
 ### Supported search engines
  - Google
@@ -18,8 +22,8 @@ This extension adds Stack Overflow and Reddit previews to the Google search page
  
 ### Other features
  - Expandable comments in Reddit
- - Comments in Reddit are hidden/displayed based on its upvotes compared to the post (simplification).
- - The main content of Stack Exchange questions are hidden by default, because it's often skipped (but there is a unhide button).
+ - Comments in Reddit are hidden/displayed based on its upvotes compared to the post.
+ - The main content of Stack Exchange questions are hidden by default because it's often skipped entirely.
 
 ## Features in consideration
  - Remove `$` from bash snippets
@@ -28,3 +32,11 @@ This extension adds Stack Overflow and Reddit previews to the Google search page
  - Settings page to toggle features
  
  Suggestions are welcome!
+
+## Contributing
+
+It is written in Svelte and uses WindiCSS for styling. I have used pnpm and vite for bundling.
+
+### Creating a new rich result
+
+#### Step 1: Create the 
