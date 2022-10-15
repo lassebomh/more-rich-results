@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 vite.config.ts.timestamp-*.mjs
+
+*.crx

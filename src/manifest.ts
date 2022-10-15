@@ -46,4 +46,5 @@ export default defineManifest({
       ],
     },
   ],
+  key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt3iSzzqFhszYdFruNZmtUrPWLTXCrFExRMcaPu0uGnyDjtI2cICkGmMLZzZU0532fXgfWNXmHeSoA0aYjKccQxSBfsdZr7YybQflUKQYYriLQjzbu5bd4GCMhAewq+d6SPg6WPjJ7xsj6DLNjLxmk5uEy2wp8TMuEJMfXZLF1ZsckdmxDehbLnin6NmOcvOwokqp4pImGnLoPk0uQB4uePMgmNLwf4PGAg5+DmfffoiqQ4LHXpjLAKKc7skUu3AQuzibFqkkim3NrnsXH4aV1kW4+1074q8KdY/gQHsWIDgxBf9vSvCLk8yI3KU29W5JyW1XmqpxDb/hjEeI/YkVtwIDAQAB",
 })
