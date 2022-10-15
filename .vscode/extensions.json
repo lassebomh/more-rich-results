@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "svelte.svelte-vscode",
-    "voorjaar.windicss-intellisense",
-    "antfu.iconify"
+    "voorjaar.windicss-intellisense"
   ]
 }
