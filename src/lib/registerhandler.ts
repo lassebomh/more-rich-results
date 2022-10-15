@@ -41,8 +41,7 @@ export async function registerHandler(platform: PlatformHandler) {
                 container.style.color = `rgb(${mrrColor})`
 
                 // mount
-                const Component = await richResult.getComponent()
-                new Component({ target: container, props: { url } })
+                new richResult.component({ target: container, props: { url } })
                 
                 break urlLoop;
             } else {

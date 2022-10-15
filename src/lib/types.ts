@@ -8,5 +8,5 @@ export interface PlatformHandler {
 
 export interface RichResult {
     match: (url: URL) => boolean,
-    getComponent: () => Promise<ComponentType>,
+    component: ComponentType,
 }
