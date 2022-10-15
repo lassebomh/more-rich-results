@@ -2,7 +2,7 @@
 
 This extension adds Stack Overflow and Reddit previews to the Google search page (among others).
 
-![Previews](https://i.imgur.com/GYQ94LM.png)
+![Previews](https://i.imgur.com/IMpVkYB.png)
 
 ## Features
 
