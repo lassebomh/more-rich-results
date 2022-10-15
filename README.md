@@ -2,11 +2,13 @@
 
 This extension adds Stack Overflow and Reddit previews to the Google search page (among others).
 
+![Previews](https://i.imgur.com/GYQ94LM.png)
+
 ## Features
 
 ### Result Previews
- - Reddit [(example)](https://i.imgur.com/bjUt4JF.png) 
- - Stack Exchange (Stack Overflow, Server Fault, Ask Ubuntu, ...) [(example)](https://i.imgur.com/DmNlz5a.png)
+ - Reddit
+ - Stack Exchange (Stack Overflow, Server Fault, Ask Ubuntu, ...)
 
 ### Supported search engines
  - Google
