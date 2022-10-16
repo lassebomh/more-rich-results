@@ -14,6 +14,6 @@ export default defineConfig({
     plugins: [
         WindiCSS(),
         crx({ manifest }),
-        svelte()//({preprocess: [windi()]}),
+        svelte()
     ],
 })
