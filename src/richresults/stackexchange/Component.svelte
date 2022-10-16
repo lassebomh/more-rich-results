@@ -41,9 +41,11 @@
             <div class="w-max">
                 Asked {moment(question.creation_date*1000).fromNow()}
             </div>
-            <div class="w-max">
-                Modified {moment(question.last_edit_date*1000).fromNow()}
-            </div>
+            {#if question.last_edit_date}
+                <div class="w-max">
+                    Modified {moment(question.last_edit_date*1000).fromNow()}
+                </div>
+            {/if}
             <div class="flex-grow text-right">
                 <button on:click={_ => questionIsVisible = !questionIsVisible}
                     class="bg-transparent border-none hover:underline text-[inherit] cursor-pointer p-0">
