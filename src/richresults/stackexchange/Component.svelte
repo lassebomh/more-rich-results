@@ -32,9 +32,9 @@
 {:then _}
     <div>
         <a href={question.link}>
-            <h1 class="text-2xl font-normal">{@html question.title}</h1>
+            <h2 class="font-normal m-0 p-0">{@html question.title}</h2>
         </a>
-        <div class="flex justify-start items-center text-[0.9em] gap-3 pt-1 pb-2 opacity-60">
+        <div class="flex justify-start items-center text-[0.9em] gap-3 pt-1 pb-3 opacity-60">
             <div class="w-max">
                 Viewed {prettifyNumber(question.view_count)} times
             </div>

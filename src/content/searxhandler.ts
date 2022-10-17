@@ -9,15 +9,20 @@ registerHandler({
     },
 
     setupContainer: (): HTMLElement => {
+        if (window.innerWidth <= 1280) return
+        
         const sidebar = document.getElementById("sidebar") as HTMLElement
         sidebar.parentElement.style.gridTemplateColumns = "45rem 35rem"
-
-        let previewContainer = document.createElement("div") as HTMLElement
-        previewContainer.classList.add("previewContainer")
         
-        sidebar.prepend(previewContainer as Node)
+        if (window.innerWidth <= 1480) sidebar.parentElement.style.gap = "0 3rem"
+        
 
-        return previewContainer
+        let mrrContainer = document.createElement("div") as HTMLElement
+        mrrContainer.classList.add("mrrContainer")
+        
+        sidebar.prepend(mrrContainer as Node)
+
+        return mrrContainer
     },
 
     getTheme: () => {

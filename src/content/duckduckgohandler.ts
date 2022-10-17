@@ -19,28 +19,26 @@ registerHandler({
     setupContainer: (): HTMLElement => {
         const sidebar = document.querySelector(".results--sidebar") as HTMLElement
         sidebar.style.maxWidth = "min-content"
+        console.log(window.innerWidth);
+        
+        if (window.innerWidth <= 1480) sidebar.style.marginLeft = "calc(var(--max-content-width) + 20px)"
 
         // remove builtin stackoverflow previews
 
-        let previewContainer = document.createElement("div") as HTMLElement
-        previewContainer.classList.add("previewContainer")
+        let mrrContainer = document.createElement("div") as HTMLElement
+        mrrContainer.classList.add("mrrContainer")
         
-        sidebar.prepend(previewContainer as Node)
+        sidebar.prepend(mrrContainer as Node)
 
-        return previewContainer
+        return mrrContainer
     },
 
     getTheme: () => {
-        // const isDark = document.querySelector(":root").classList.contains("startpage-html--dark")
-        // const rgb = isDark ? [255, 255, 255] : [32, 41, 69]
-
         const searchInput = document.querySelector('#search_form_input')
         
         const searchInputColor = window.getComputedStyle(searchInput).getPropertyValue("color")
         const rgb = searchInputColor.match(/\d+/g)!
                                     .map((value) => parseInt(value))
-
-        // ADD LINK COLORS TO THEME
 
         return {
             '--mrr-color': rgb.join(", "),

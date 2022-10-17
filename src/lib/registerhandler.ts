@@ -38,6 +38,9 @@ export async function registerHandler(platform: PlatformHandler) {
                 }
                 
                 const container = platform.setupContainer()
+                
+                if (container == null) return
+                
                 container.style.color = `rgb(${mrrColor})`
 
                 // mount

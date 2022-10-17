@@ -11,7 +11,7 @@
 
 </script>
 
-<div class="flex justify-start items-start flex-col text-[0.85rem] gap-2">
+<div class="flex justify-start items-start flex-col gap-2">
     {#each comments as comment, i}
         {#if comment.data.author}
             <Comment {comment} {post} shown={showFirst && i == 0 ? true : undefined} />

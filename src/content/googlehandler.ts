@@ -18,24 +18,26 @@ registerHandler({
 
     setupContainer: (): HTMLElement => {
         const rcnt = document.querySelector("#rcnt") as HTMLElement
+        if (rcnt == null) return
+        
         rcnt.style.maxWidth = 'initial';
         const rhs = document.querySelector("#rhs")
 
-        let previewContainer: HTMLElement;
+        let mrrContainer: HTMLElement;
         
         if (rhs != null) {
-            previewContainer = rhs as HTMLElement
+            mrrContainer = rhs as HTMLElement
         } else {
-            previewContainer = document.createElement("div") as HTMLElement
+            mrrContainer = document.createElement("div") as HTMLElement
             rcnt.style.flexWrap = "initial";
         }
         
-        previewContainer.style.paddingLeft = "1.5rem"
-        previewContainer.classList.add("previewContainer")
+        mrrContainer.style.paddingLeft = "1.5rem"
+        mrrContainer.classList.add("mrrContainer")
 
-        rcnt.appendChild(previewContainer as Node)
+        rcnt.appendChild(mrrContainer as Node)
 
-        return previewContainer
+        return mrrContainer
     },
 
     getTheme: () => {

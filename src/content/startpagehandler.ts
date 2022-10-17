@@ -7,16 +7,20 @@ registerHandler({
         return atags.map((a: HTMLLinkElement) => new URL(a.href))
     },
 
-    setupContainer: (): HTMLElement => {
+    setupContainer: (): HTMLElement | null => {
+    
         const sidebar = document.querySelector(".layout-web__sidebar") as HTMLElement
         sidebar.style.maxWidth = "initial"
 
-        let previewContainer = document.createElement("div") as HTMLElement
-        previewContainer.classList.add("previewContainer")
-        
-        sidebar.prepend(previewContainer as Node)
+        const results = document.querySelector(".layout-web__mainline") as HTMLElement
+        results.style.marginLeft = '30px'
 
-        return previewContainer
+        let mrrContainer = document.createElement("div") as HTMLElement
+        mrrContainer.classList.add("mrrContainer")
+        
+        sidebar.prepend(mrrContainer as Node)
+
+        return mrrContainer
     },
 
     getTheme: () => {

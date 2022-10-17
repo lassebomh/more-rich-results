@@ -33,7 +33,7 @@
 {:then _} 
     <div>
         <div class="ml-2">
-            <div class="flex justify-start items-center text-[0.8rem] gap-4 pt-1 opacity-75">
+            <div class="flex justify-start items-center text-[0.85em] gap-4 pt-1 opacity-75">
                 <div>
                     Posted by
                     <a href={"https://www.reddit.com/user/"+post.author} class="text-[inherit]">u/{post.author}</a>
@@ -43,7 +43,7 @@
                     
                 </div>
             </div>
-            <a href={post.url}><h1 class="text-2xl font-normal pb-2 pt-1">{@html post.title}</h1></a>
+            <a href={post.url}><h2 class="font-normal py-[0.25em] m-0">{@html post.title}</h2></a>
             {#if post.selftext_html}
                 <HTMLContent class="trimMargin pb-3" html={post.selftext_html} decode={true} origin="https://www.reddit.com" />
             {/if}
