@@ -6,11 +6,12 @@
     
     export let comment: any;
     export let post: any;
-    export let shown: boolean | undefined = undefined
+    export let index: number;
+    export let depth: number;
 
-    if (shown === undefined) {
-        shown = comment.data.score/(1 + post.ups + post.downs + 8) > 0.4;
-    }
+    let highlight = depth == 0 && index == 0
+
+    let shown = highlight || comment.data.score/(1 + post.ups + post.downs + 8) > 0.4;
 </script>
 
 <div style="border-color: rgba(var(--mrr-color), 0.25)" class="border-solid border-0 border-l-2 pl-2 ml-2 relative">
@@ -21,7 +22,7 @@
     {#if shown}
         <HTMLContent class="trimMargin mb-2" html={comment.data.body_html} decode={true} origin="https://www.reddit.com" />
         {#if comment.data.replies}
-            <Comments comments={comment.data.replies.data.children} {post} />
+            <Comments comments={comment.data.replies.data.children} {post} depth={depth+1} />
         {/if}
     {/if}
 </div>

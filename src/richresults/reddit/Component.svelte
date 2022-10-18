@@ -3,6 +3,8 @@
     import moment from 'moment'
 
     import HTMLContent from "../../components/HTMLContent.svelte";
+    import Spinner from "../../components/Spinner.svelte";
+
     import Comments from './Comments.svelte';
 
     export let url;
@@ -24,12 +26,12 @@
         post = post.crosspost_parent_list !== undefined ? post.crosspost_parent_list[0] : post
         if (json[1].data) comments = json[1].data.children
         
-        resolve(1)
+        resolve(null)
     })
 </script>
 
 {#await promise}
-    Loading...
+    <div></div>
 {:then _} 
     <div>
         <div class="ml-2">
@@ -49,7 +51,7 @@
             {/if}
         </div>
         {#if comments}
-            <Comments comments={comments} limit={8} {post} showFirst={true} />
+            <Comments comments={comments} limit={8} {post} depth={0} />
         {/if}
         {#if comments.length > 8}
             <div class="pt-2">

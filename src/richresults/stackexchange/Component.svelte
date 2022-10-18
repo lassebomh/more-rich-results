@@ -2,6 +2,7 @@
     import { fetch, prettifyNumber } from '../../lib/contentutils'
     import moment from 'moment'
     import HTMLContent from "../../components/HTMLContent.svelte";
+    import Spinner from "../../components/Spinner.svelte";
 
     export let url: URL;
 
@@ -23,12 +24,12 @@
 
         answer = question.answers.length > 0 && question.answers[0]
 
-        resolve(json)
+        resolve(null)
     })
 </script>
 
 {#await data}
-    Loading...
+    <div></div>
 {:then _}
     <div>
         <a href={question.link}>

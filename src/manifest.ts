@@ -3,7 +3,7 @@ import { defineManifest } from '@crxjs/vite-plugin'
 export default defineManifest({
   name: 'More Rich Results',
   description: "",
-  version: '1.1.1',
+  version: '1.1.2',
   manifest_version: 3,
   icons: {
     "16": "src/assets/images/icon_16.png",
