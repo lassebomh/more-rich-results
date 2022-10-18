@@ -2,7 +2,7 @@ import { defineManifest } from '@crxjs/vite-plugin'
 
 export default defineManifest({
   name: 'More Rich Results',
-  description: "",
+  description: "Stack Overflow and Reddit previews directly in your search engine",
   version: '1.1.2',
   manifest_version: 3,
   icons: {
