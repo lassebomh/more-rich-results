@@ -4,7 +4,7 @@ This extension adds Stack Overflow and Reddit previews to the Google search page
 
 It works by requesting public (and official) APIs when the link to a search result matches an implemented result preview. It makes no outbound requests other than these and is written in a simple fashion that makes it easy to extend.
 
-![Previews](https://i.imgur.com/IMpVkYB.png)
+![Previews](https://i.imgur.com/4TDJHjQ.png)
 
 ## Features
 
