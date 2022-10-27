@@ -6,12 +6,17 @@ registerHandler({
         
         const links: URL[] = []
 
-        if (resultsElement != null) {
-            [...resultsElement.children].forEach((e) => {
-                const link = e.querySelector("a")
-                if (link != null) links.push(new URL(link.href));
-            })
-        }
+        // if (resultsElement != null) {
+        //     [...resultsElement.children].forEach((e) => {
+        //         const link = e.querySelector("a")
+        //         if (link != null) links.push(new URL(link.href));
+        //     })
+        // }
+        // const links = []
+
+        document.querySelectorAll("#rso div:has(cite) a:has(h3)").forEach((node: HTMLLinkElement) => {
+            links.push(new URL(node.href))
+        })
 
         return links
     },
@@ -32,10 +37,11 @@ registerHandler({
             rcnt.style.flexWrap = "initial";
         }
         
-        mrrContainer.style.paddingLeft = "1.5rem"
+        mrrContainer.style.paddingLeft = "0"
+        mrrContainer.style.marginLeft = "2rem"
         mrrContainer.classList.add("mrrContainer")
 
-        rcnt.appendChild(mrrContainer as Node)
+        rcnt.append(mrrContainer as Node)
 
         return mrrContainer
     },
@@ -46,8 +52,21 @@ registerHandler({
         const rgb = bodyColor.match(/\d+/g)!
                              .map((value) => parseInt(value))
 
+        const link = document.querySelector('#rso .g a h3')
+        const linkColor = window.getComputedStyle(link).getPropertyValue("color")
+
+        const linkRgb = linkColor.match(/\d+/g)!
+                                    .map((value) => parseInt(value))
+
         return {
             '--mrr-color': rgb.join(", "),
+            '--mrr-link-color': linkRgb.join(", "),
         }
+    },
+
+    filteredSearchUrl: (currentUrl: URL, triggerHost: string): URL => {
+        currentUrl.searchParams.set("q", currentUrl.searchParams.get("q") + ' site:' + triggerHost)
+        
+        return currentUrl
     }
 })

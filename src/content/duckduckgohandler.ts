@@ -19,7 +19,6 @@ registerHandler({
     setupContainer: (): HTMLElement => {
         const sidebar = document.querySelector(".results--sidebar") as HTMLElement
         sidebar.style.maxWidth = "min-content"
-        console.log(window.innerWidth);
         
         if (window.innerWidth <= 1480) sidebar.style.marginLeft = "calc(var(--max-content-width) + 20px)"
 
@@ -40,8 +39,21 @@ registerHandler({
         const rgb = searchInputColor.match(/\d+/g)!
                                     .map((value) => parseInt(value))
 
-        return {
+        const link = document.querySelector('#links h2 a')
+        const linkColor = window.getComputedStyle(link).getPropertyValue("color")
+        
+        const linkRgb = linkColor.match(/\d+/g)!
+                                    .map((value) => parseInt(value))
+
+                                    return {
             '--mrr-color': rgb.join(", "),
+            '--mrr-link-color': linkRgb.join(", "),
         }
+    },
+
+    filteredSearchUrl: (currentUrl: URL, triggerHost: string): URL => {
+        currentUrl.searchParams.set("q", currentUrl.searchParams.get("q") + ' site:' + triggerHost)
+        
+        return currentUrl
     }
 })

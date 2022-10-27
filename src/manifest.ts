@@ -16,22 +16,29 @@ export default defineManifest({
     service_worker: 'src/background/main.ts',
     type: 'module',
   },
+  action: {
+    default_popup: "src/popup/index.html"
+  },
   content_scripts: [
     {
       matches: ['*://www.google.com/search?q=*'],
       js: ['src/content/googlehandler.ts'],
+      all_frames: true,
     },
     {
       matches: ['*://www.startpage.com/sp/search', '*://www.startpage.com/sp/search*', '*://www.startpage.com/do/search', '*://www.startpage.com/do/search*'],
       js: ['src/content/startpagehandler.ts'],
+      all_frames: true,
     },
     {
       matches: ['*://duckduckgo.com/?q=*'],
       js: ['src/content/duckduckgohandler.ts'],
+      all_frames: true,
     },
     {
       matches: ['*://searx.tiekoetter.com/search?q=*'],
       js: ['src/content/searxhandler.ts'],
+      all_frames: true,
     },
   ],
   web_accessible_resources: [

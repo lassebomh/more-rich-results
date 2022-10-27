@@ -5,13 +5,18 @@
     /* max-width: 500px;
     min-width: 460px;
     width: 30vw; */
-    width: 500px;
+    width: 500px !important;
     overflow-y: auto;
     /* padding-left: 6rem; */
     /* padding-right: 3rem; */
-    font-size: max(0.9rem, 15px);
-    margin-bottom: 1em;
+    font-size: max(0.9rem, 14px) !important;
+    margin-bottom: 2em;
     font-size: inherit;
+}
+
+.mrrContainer > * {
+    width: auto !important;
+    margin-bottom: 2em;
 }
 
 .mrrContainer h1 { font-size: 1.8em; line-height: 1.2em; font-weight: normal; }
@@ -36,6 +41,7 @@
 
 .mrrContainer a {
     text-decoration: none;
+    color: rgb(var(--mrr-link-color));
 }
 .mrrContainer a:hover {
     text-decoration: underline;

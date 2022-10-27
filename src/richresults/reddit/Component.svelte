@@ -51,14 +51,7 @@
             {/if}
         </div>
         {#if comments}
-            <Comments comments={comments} limit={8} {post} depth={0} />
-        {/if}
-        {#if comments.length > 8}
-            <div class="pt-2">
-                <a class="ml-2" href={post.url}>
-                    More comments
-                </a>
-            </div>
+            <Comments comments={comments} limit={5} {post} depth={0} />
         {/if}
         <!-- {commentComponent(comments, 0).slice(0, 7)} -->
     </div>

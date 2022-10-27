@@ -32,8 +32,21 @@ registerHandler({
         const rgb = searchInputColor.match(/\d+/g)!
                                     .map((value) => parseInt(value))
 
-        return {
+        const link = document.querySelector('#urls .result > h3 > a')
+        const linkColor = window.getComputedStyle(link).getPropertyValue("color")
+        
+        const linkRgb = linkColor.match(/\d+/g)!
+                                    .map((value) => parseInt(value))
+
+                                    return {
             '--mrr-color': rgb.join(", "),
+            '--mrr-link-color': linkRgb.join(", "),
         }
+    },
+
+    filteredSearchUrl: (currentUrl: URL, triggerHost: string): URL => {
+        currentUrl.searchParams.set("q", currentUrl.searchParams.get("q") + ' site:' + triggerHost)
+        
+        return currentUrl
     }
 })

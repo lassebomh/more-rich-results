@@ -33,10 +33,22 @@ registerHandler({
         const rgb = searchInputColor.match(/\d+/g)!
                                     .map((value) => parseInt(value))
 
-        // ADD LINK COLORS TO THEME
+        const link = document.querySelector('.result-link > h3')
+        const linkColor = window.getComputedStyle(link).getPropertyValue("color")
+        
+        const linkRgb = linkColor.match(/\d+/g)!
+                                    .map((value) => parseInt(value))
 
-        return {
+                                    return {
             '--mrr-color': rgb.join(", "),
+            '--mrr-link-color': linkRgb.join(", "),
         }
+    },
+
+    filteredSearchUrl: (currentUrl: URL, triggerHost: string): URL => {
+        let searchInput = document.getElementById("q") as HTMLInputElement
+        currentUrl.searchParams.set("q", searchInput.value + ' site:' + triggerHost)
+        
+        return currentUrl
     }
 })
